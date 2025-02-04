@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tblproducts', function (Blueprint $table) {
             $table->id();
             $table->string('nama_product');
-            $table->binary('image');
+            $table->binary('image') -> nullable();
             $table->string('description');
             $table->integer('jumlah_product');
             $table->decimal('price',10,2);

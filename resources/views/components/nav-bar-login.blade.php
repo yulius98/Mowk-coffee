@@ -10,7 +10,7 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               
-              <a href="/ProductLogin" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
                 
             </div>
           </div>
@@ -18,7 +18,8 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-              <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300">{{ $slot}}</a>
+              <a href="/Logout" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">
                 <i data-feather="shopping-cart"></i>
               </a>

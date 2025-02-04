@@ -11,10 +11,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/ProductLogin', function () {
-    return view('ProductLogin');
-});
-
 Route::get('/About', function () {
     return view('About');
 });
@@ -35,6 +31,8 @@ Route::post('/Register', [RegController::class, 'RegUser']);
 
 Route::post('/Login',[AuthLogin::class,'AuthUser']);
 
+Route::get('/Logout',[AuthLogin::class,'Logout']);
+
 Route::get('/CRUIDSeller',[CRUIDSellerController::class,'ShowProducts']);
 
 Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']);
@@ -44,3 +42,5 @@ Route::get('/edit_produk/{id}',[CRUIDSellerController::class,'Edit_Produk']);
 Route::post('/edit_produk/{id}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
+
+//Route::get('/ProductLogin',[ProductShow::class,'ProductShowLogin'] );

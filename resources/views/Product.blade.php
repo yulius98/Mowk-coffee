@@ -5,7 +5,7 @@
             @foreach($dt_product_not_login as $dt_product)
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
                     <div class="relative">
-                        <img src="{{ base64_decode($dt_product->image, true)  }}" alt="Produk Image"
+                        <img src="data:image/jpeg;base64,{{ base64_encode($dt_product->image) }}" alt="Produk Image"
                             class="w-full h-56 object-cover">
                     </div>
                     <div class="p-6">
