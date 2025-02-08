@@ -1,4 +1,13 @@
 <x-layout-cruid-seller>
+<x-slot:title>{{ $title }}</x-slot:title>
+<div>
+    <body>
+    <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300">{{ $user->name }}</a>
+    <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300">{{ $user->id }}</a>
+    {{-- Tambahkan konten lain sesuai kebutuhan --}}
+</body>
+</div>
+
 <!-- Produk Promo -->    
 <div class="container mx-auto px-4 py-8" >
     <div class="flex justify-between items-center mb-6">
@@ -36,9 +45,6 @@
     </div>
 </div>    
 
-
-
-
 <!-- Produk biji kopi -->
 <div class="container mx-auto px-4 py-8">
     <!-- Header dengan Search -->
@@ -46,7 +52,7 @@
         <h2 class="text-2xl font-bold text-gray-800">Product Coffee Been</h2>
         <div class="flex items-center gap-4">
                         <button type="button" 
-                    class="bg-[#A14C36] hover:bg-[#723322] text-white px-4 py-2 rounded-lg shadow-sm transition duration-150" onclick="window.location.href='/ModalForm'">
+                    class="bg-[#A14C36] hover:bg-[#723322] text-white px-4 py-2 rounded-lg shadow-sm transition duration-150" onclick="window.location.href='/add_produk/{{ $user->name }}'">
                 Add Coffee Been 
             </button>
         </div>

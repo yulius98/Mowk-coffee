@@ -22,20 +22,27 @@ class AuthLogin extends Controller
         $dt_product_login = DB::table('tblproducts')
                         ->paginate(10);
 
+        $data_carousel = DB::table('carousels')->get();                
+
         if (Auth::attempt($credentials)) {
                 
             $request->session()->regenerate();
             
 
             $dtuser = User::where('email', $credentials['email'])->first();
+
+            $data_biji_kopi = DB::table('tblproducts')->paginate(10);
             
+            $data_carousel = DB::table('carousels')->get();
 
             if( $dtuser->role == "seller"){
-                return redirect()->intended('CRUIDSeller')->with('userId', $dtuser->id);
+                // Mengirimkan objek pengguna ke view
+                return view('CRUIDSeller', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
             } elseif ($dtuser->role == "buyer") {
                 // Mengirimkan objek pengguna ke view  
                 return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'product' => $dt_product_login]);
             } elseif ($dtuser->role == "admin"){
+                // Mengirimkan objek pengguna ke view
                 return view('RegisterSeller');
             }
             

@@ -28,17 +28,9 @@ Route::get('/RegisterSeller', function () {
     return view('RegisterSeller');
 });
 
-Route::get('/ModalForm', function () {
-    return view('ModalForm');
-});
-
-Route::get('/Carousel',function(){
-    return view('Carousel');
-});
+Route::get('/add_produk/{name_seller}',[CRUIDSellerController::class,'ShowAddProduct']);
 
 Route::get('/Logout',[AuthLogin::class,'Logout']);
-
-Route::get('/CRUIDSeller',[CRUIDSellerController::class,'ShowProducts']);
 
 Route::get('/edit_produk/{id}',[CRUIDSellerController::class,'Edit_Produk']);
 
@@ -48,7 +40,7 @@ Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
 
 Route::post('/Register', [RegController::class, 'RegUser']);
 
-Route::post('RegisterSeller',[RegController::class,'RegSeller']);
+Route::post('/RegisterSeller',[RegController::class,'RegSeller']);
 
 Route::post('/Login',[AuthLogin::class,'AuthUser']);
 

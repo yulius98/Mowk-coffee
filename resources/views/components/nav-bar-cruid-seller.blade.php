@@ -12,7 +12,8 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-              <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+            <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300">{{ $slot}}</a>
+            <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
               
           </div> 
         </div>

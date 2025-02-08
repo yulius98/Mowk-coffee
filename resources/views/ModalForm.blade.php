@@ -1,5 +1,6 @@
 <x-layout-cruid-seller>
-
+    <x-slot:title>{{ $title }}</x-slot:title>
+        
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add Produk Coffee Been</h3>
             <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
