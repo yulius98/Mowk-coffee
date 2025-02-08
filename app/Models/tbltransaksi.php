@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tblpembelian extends Model
+class tbltransaksi extends Model
 {
     protected $fillable = [
-        'nama_seller',
+        'nama_pembeli',
         'nama_product',
         'jumlah_product',
-        'total_price'
+        'totalprice',
+        'alamat_pengiriman',
+        'no_HP',
+        'status_transaksi'
         
     ];
 }

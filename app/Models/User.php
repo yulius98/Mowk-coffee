@@ -23,6 +23,8 @@ class User extends Authenticatable
         'username',
         'password',
         'email',
+        'alamat_pengiriman',
+        'no_HP',
         'admin',
         'role'
     ];

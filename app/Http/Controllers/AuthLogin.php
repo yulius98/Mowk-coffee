@@ -32,11 +32,11 @@ class AuthLogin extends Controller
 
             if( $dtuser->role == "seller"){
                 return redirect()->intended('CRUIDSeller')->with('userId', $dtuser->id);
-
             } elseif ($dtuser->role == "buyer") {
-                // Mengirimkan objek pengguna ke view
-                
-            return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'product' => $dt_product_login]);
+                // Mengirimkan objek pengguna ke view  
+                return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'product' => $dt_product_login]);
+            } elseif ($dtuser->role == "admin"){
+                return view('RegisterSeller');
             }
             
         }

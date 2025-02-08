@@ -10,12 +10,15 @@ class ProductShow extends Controller
 {
     public function ProductShowNotLogin() 
     {
+            
+            $Carousel = DB::table('carousels')
+                    ->get();
+
             $dt_product_not_login = DB::table('tblproducts')
                                     -> paginate(10);
             
-
-            //dd($dt_product_not_login);                        
-            return view('Product',['title'=>'Coffee Been'], compact('dt_product_not_login'));
+                                    
+            return view('Product',['title'=>'Coffee Been'], compact('Carousel','dt_product_not_login'));
 
     }
 
