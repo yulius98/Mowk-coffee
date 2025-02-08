@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tblpenjualans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nama_pembeli_id')->constrained('users');
-            $table->foreignId('nama_product_id')->constrained('tblproducts');
+            $table->string('nama_pembeli');
+            $table->string('nama_product');
             $table->integer('jumlah_product');
             $table->decimal('total_price',10,2);
             $table->timestamps();

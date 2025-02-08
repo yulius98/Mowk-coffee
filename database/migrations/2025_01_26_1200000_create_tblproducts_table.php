@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('tblproducts', function (Blueprint $table) {
             $table->id();
             $table->string('nama_product');
-            $table->binary('image') -> nullable();
-            $table->string('description');
-            $table->integer('jumlah_product');
+            $table->string('image') -> nullable();
+            $table->string('description')->nullable();
             $table->decimal('price',10,2);
-            $table->boolean('product_unggulan')->default(false);
             $table->timestamps();
         });
     }

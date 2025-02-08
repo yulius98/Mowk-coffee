@@ -1,12 +1,11 @@
-
+<x-nav-bar/>
 <x-layout>
      <!-- Products Grid -->
         <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach($dt_product_not_login as $dt_product)
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                    <div class="relative">
-                        <img src="data:image/jpeg;base64,{{ base64_encode($dt_product->image) }}" alt="Produk Image"
-                            class="w-full h-56 object-cover">
+                <div class="card  bg-[rgb(238,233,229)] rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="card-body">
+                        <img src="{{ asset('storage/'. $dt_product->image)}}" class="card-img-top h-56" alt="Produk Image">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-800 line-clamp-2 mb-2">{{ $dt_product->nama_product }}</h3>
@@ -19,4 +18,5 @@
                 </div>
             @endforeach
         </div>
+    
 </x-layout>

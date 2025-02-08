@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tblstock_logs', function (Blueprint $table) {
+        Schema::create('carousels', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_product');
-            $table->integer('jumlah_product_beli');
-            $table->integer('jumlah_product_jual');
+            $table->string('image') -> nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tblstock_logs');
+        Schema::dropIfExists('carousels');
     }
 };

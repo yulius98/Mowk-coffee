@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tblstock_logs', function (Blueprint $table) {
+        Schema::create('tbltransaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pembeli');
             $table->string('nama_product');
-            $table->integer('jumlah_product_beli');
-            $table->integer('jumlah_product_jual');
+            $table->integer('jumlah_product');
+            $table->decimal('total_price',10,2);
+            $table->string('alamat_pengiriman')->nullable();
+            $table->string('no_HP')->nullable();
+            $table->enum('status_transaksi',['pending','paid','send']);
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tblstock_logs');
+        Schema::dropIfExists('tbltransaksis');
     }
 };
