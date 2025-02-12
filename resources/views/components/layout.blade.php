@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full bg-[rgb(212,203,197)]">
+<html class="h-full bg-[rgb(240,180,140)]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

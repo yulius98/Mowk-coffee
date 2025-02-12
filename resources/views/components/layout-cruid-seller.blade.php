@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full bg-[rgb(212,203,197)]">
+<html class="h-full bg-[rgb(240,180,140)]">
   <head>
     <title>Mowks-Coffee</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">

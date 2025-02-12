@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegController;
 use App\Http\Controllers\CRUIDSellerController;
 use App\Http\Controllers\ProductShow;
+use App\Http\Controllers\ShoppingCartController;
+
+
 
 Route::get('/', function () {
     return view('home');
@@ -32,9 +35,11 @@ Route::get('/add_produk/{name_seller}',[CRUIDSellerController::class,'ShowAddPro
 
 Route::get('/Logout',[AuthLogin::class,'Logout']);
 
-Route::get('/edit_produk/{id}',[CRUIDSellerController::class,'Edit_Produk']);
+Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
+
+
 
 
 
@@ -48,4 +53,6 @@ Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']
 
 Route::post('/Carousel',[CarouselController::class,'AddAds']);
 
-Route::post('/edit_produk/{id}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
+Route::post('/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
+
+Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']);
