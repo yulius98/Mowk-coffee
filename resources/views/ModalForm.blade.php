@@ -3,7 +3,7 @@
         
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add Produk Coffee Been</h3>
-            <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
+            <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -15,8 +15,11 @@
                 @endif
                 <form id="productForm" class="space-y-6" action="/CRUIDSeller" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="Id">
                     
+                    <div>
+                        <input type="hidden" id="nama_seller" name="nama_seller" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" value="{{ $nama_seller }}">
+                    </div>
+
                     <div>
                         <label class="block text-sm font-bold text-black">Product Name</label>
                         <input type="text" id="nama_product" name="nama_product" required 

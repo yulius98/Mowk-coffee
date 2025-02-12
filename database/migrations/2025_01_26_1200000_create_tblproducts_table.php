@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_product');
             $table->string('image') -> nullable();
             $table->string('description')->nullable();
+            $table->decimal('price',10,2);
             $table->timestamps();
         });
     }

@@ -13,14 +13,12 @@ class tblproduct extends Model
         'nama_product',
         'image',
         'description',
-        'jumlah_product',
-        'price',
-        'product_unggulan'
+        'price'
         
     ];
 
     protected $casts = [
-        'product_unggulan' => 'boolean'
+        
     ];
 }
 

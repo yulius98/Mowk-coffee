@@ -1,7 +1,8 @@
 <x-layout-cruid-seller>
+<x-slot:title>{{ $title }}</x-slot:title>
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Edit Produk Coffee Been</h3>
-            <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
+            <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -13,19 +14,14 @@
                 @endif
                 @if (is_object($edit_produk))
                     
-                    <form id="EditProductForm" class="space-y-4" method="post" enctype="multipart/form-data">    
+                    <form id="EditProductForm" class="space-y-4" action="/edit_produk/{{$edit_produk->id}}/{{ $user }}"   method="post" enctype="multipart/form-data">    
                         @csrf
                         <input type="hidden" id="Id" name="Id" value="{{ $edit_produk->id }}">
                         <div>
                             <label class="block text-sm font-bold text-black">Product Name</label>
-                            <input type="text" id="nama_product" name="nama_product" value="{{ $edit_produk->nama_product }}" required 
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-black">Number of Product</label>
-                            <input type="text" id="jumlah_product" name="jumlah_product" value="{{ $edit_produk->jumlah_product }}" required 
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <label class="block text-sm font-normal text-black">{{ $edit_produk->nama_product }}</label>
+                            <input type="hidden" id="nama_product" name="nama_product" value="{{ $edit_produk->nama_product }}"  
+                                class="mt-1 block w-full rounded-md border-[rgb(236,222,210)] shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         </div>
 
                         <div>
@@ -50,11 +46,11 @@
                         </div>
                         <div class="flex justify-end space-x-3 mt-5">
                             <button type="button" 
-                                    class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600" onclick="window.location.href='/CRUIDSeller'">
+                                    class="bg-[#9b6c60] text-white px-4 py-2 rounded-md hover:bg-[#54372f]" onclick="window.location.href='/CRUIDSeller'">
                                 Cancel
                             </button>
-                            <button type="button"
-                                    class="rounded-md bg-[#A14C36] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#723322]" onclick="window.location.href='/edit_produk/{{$edit_produk->id}}'" >
+                            <button type="submit"
+                                    class="rounded-md bg-[#A14C36] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#723322]" >
                                     Save
                             </button>
 

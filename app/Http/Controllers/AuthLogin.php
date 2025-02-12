@@ -31,16 +31,21 @@ class AuthLogin extends Controller
 
             $dtuser = User::where('email', $credentials['email'])->first();
 
-            $data_biji_kopi = DB::table('tblproducts')->paginate(10);
-            
+            // Mengambil data biji kopi dan jumlah stock biji kopi
+            $data_biji_kopi = DB::table('tblproducts as p')
+                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                            ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
+                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->paginate(10);
+            //dd($data_biji_kopi);          
             $data_carousel = DB::table('carousels')->get();
 
             if( $dtuser->role == "seller"){
                 // Mengirimkan objek pengguna ke view
-                return view('CRUIDSeller', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
+                return view('CRUIDSeller', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser->name,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
             } elseif ($dtuser->role == "buyer") {
                 // Mengirimkan objek pengguna ke view  
-                return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser,'product' => $dt_product_login]);
+                return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser->name,'product' => $data_biji_kopi]);
             } elseif ($dtuser->role == "admin"){
                 // Mengirimkan objek pengguna ke view
                 return view('RegisterSeller');
