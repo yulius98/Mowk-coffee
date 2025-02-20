@@ -19,9 +19,7 @@ class AuthLogin extends Controller
         ]);
         
 
-        $dt_product_login = DB::table('tblproducts')
-                        ->paginate(10);
-
+        
         $data_carousel = DB::table('carousels')->get();                
 
         if (Auth::attempt($credentials)) {
@@ -35,17 +33,24 @@ class AuthLogin extends Controller
             $data_biji_kopi = DB::table('tblproducts as p')
                             ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
                             ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image')
                             ->paginate(10);
-            //dd($data_biji_kopi);          
+                    
             $data_carousel = DB::table('carousels')->get();
+
+            $data_transaksi = DB::table('tbltransaksis')
+                            ->where('nama_pembeli', $dtuser->name)
+                            ->where('status_transaksi', 'pending')
+                            ->count();
+
+                          
 
             if( $dtuser->role == "seller"){
                 // Mengirimkan objek pengguna ke view
                 return view('CRUIDSeller', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser->name,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
             } elseif ($dtuser->role == "buyer") {
                 // Mengirimkan objek pengguna ke view  
-                return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser->name,'product' => $data_biji_kopi]);
+                return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'count_shopping_cart' => $data_transaksi,'user' => $dtuser->name,'product' => $data_biji_kopi]);
             } elseif ($dtuser->role == "admin"){
                 // Mengirimkan objek pengguna ke view
                 return view('RegisterSeller');

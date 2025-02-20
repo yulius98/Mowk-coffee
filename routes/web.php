@@ -31,6 +31,8 @@ Route::get('/RegisterSeller', function () {
     return view('RegisterSeller');
 });
 
+Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
+
 Route::get('/add_produk/{name_seller}',[CRUIDSellerController::class,'ShowAddProduct']);
 
 Route::get('/Logout',[AuthLogin::class,'Logout']);
