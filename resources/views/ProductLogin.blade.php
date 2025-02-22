@@ -1,12 +1,11 @@
 <x-layout-login>   
-
 <x-nav-bar-login :pendingCount="$count_shopping_cart" :title="$title" :user="$user" />
 <div>
     <body>
         <a class="rounded-md px-3 py-2 text-sm font-medium text-[rgb(240,180,140)]">{{ $user }}</a>
     </body>
 </div>
-<div id="product-list" class="grid grid-cols-1 sm:grid-cols-4 sd:grid-cols-3 lg:grid-cols-16 gap-4">
+<div id="product-list" class="grid grid-cols-1 sm:grid-cols-4 sd:grid-cols-4 lg:grid-cols-16 gap-4 ml-8 mr-8">
     @foreach($product as $dataproduct)
     <form id="product" class="space-y-6" action="/addshoppingcart" method="post" enctype="multipart/form-data">
         @csrf
@@ -82,67 +81,99 @@
     });
 </script>
 
+<!-- Improved Modal Container -->
 <div id="modalsContainer">
     @foreach($product as $index => $dataproduct)
-    <div id="modal-{{ $index }}" class="detail-modal hidden fixed bg-white border rounded-lg shadow-lg z-[9999] p-4 w-64">
-        <h3 class="text-lg font-medium leading-6 text-gray-900 modal-title"></h3>
-        <p class="text-sm text-gray-500 mt-2 modal-description"></p>
-        <button onclick="closeModal({{ $index }})" class="mt-3 px-3 py-1 bg-[rgb(119,72,33)] text-white text-sm rounded-md hover:bg-[rgb(155,120,91)] focus:outline-none focus:ring-2 focus:ring-gray-300">
-            Close
-        </button>
+    <div id="modal-{{ $index }}" class="detail-modal hidden fixed inset-0 z-50">
+        <!-- Modal Backdrop -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+        
+        <!-- Modal Content -->
+        <div class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <!-- Modal Header -->
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                <h3 class="text-xl font-semibold leading-6 text-gray-900 modal-title mb-4"></h3>
+                                <div class="mt-2">
+                                    <p class="text-base text-gray-500 modal-description"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button onclick="closeModal({{ $index }})" class="mt-3 inline-flex w-full justify-center rounded-md bg-[rgb(119,72,33)] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[rgb(155,120,91)] sm:mt-0 sm:w-auto transition duration-300 ease-in-out transform hover:scale-105">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     @endforeach
 </div>
 
 <script>
-    let activeDetailLink = null;
     let activeModal = null;
 
     function showModal(event, productId, title, description) {
         event.preventDefault();
         
+        // Hide any active modals
         document.querySelectorAll('.detail-modal').forEach(modal => {
             modal.classList.add('hidden');
         });
 
-        const detailLink = event.target;
         const modal = document.getElementById(`modal-${productId}`);
         
+        // Set modal content
         modal.querySelector('.modal-title').textContent = title;
         modal.querySelector('.modal-description').textContent = description;
         
-        activeDetailLink = detailLink;
         activeModal = modal;
         
-        updateModalPosition();
-        
+        // Show modal with fade effect
         modal.classList.remove('hidden');
-    }
+        setTimeout(() => {
+            modal.querySelector('.bg-black').classList.add('opacity-50');
+        }, 10);
 
-    function updateModalPosition() {
-        if (activeDetailLink && activeModal) {
-            const linkRect = activeDetailLink.getBoundingClientRect();
-            activeModal.style.left = `${linkRect.right + 0.1}px`;
-            activeModal.style.top = `${linkRect.top}px`;
-        }
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal(productId) {
-        document.getElementById(`modal-${productId}`).classList.add('hidden');
-        activeDetailLink = null;
-        activeModal = null;
+        const modal = document.getElementById(`modal-${productId}`);
+        
+        // Fade out effect
+        modal.querySelector('.bg-black').classList.remove('opacity-50');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            activeModal = null;
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }, 200);
     }
 
+    // Close modal when clicking outside
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.detail-modal') && !event.target.closest('[data-product-id]')) {
-            document.querySelectorAll('.detail-modal').forEach(modal => {
-                modal.classList.add('hidden');
-            });
-            activeDetailLink = null;
-            activeModal = null;
+        if (activeModal && !event.target.closest('.modal-content') && !event.target.closest('[data-product-id]')) {
+            const productId = activeModal.id.split('-')[1];
+            closeModal(productId);
         }
     });
 
-    window.addEventListener('scroll', updateModalPosition);
+    // Close modal on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && activeModal) {
+            const productId = activeModal.id.split('-')[1];
+            closeModal(productId);
+        }
+    });
 </script>
 </x-layout-login>

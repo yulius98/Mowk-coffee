@@ -94,7 +94,12 @@ class ShoppingCartController extends Controller
                             )
                             ->orderBy('trx.id', 'desc')
                             ->get();
-            //dd($data_transaksi);
-            return view('ShoppingCart', ['title' => 'Welcome '.$data_user->name, 'user' => $data_user,'dttransaksi' => $data_transaksi]);    
+            
+            $total_price = DB::table('tbltransaksis as trx')
+                            ->where('nama_pembeli', $username)
+                            ->where('status_transaksi', 'pending')
+                            ->sum('total_price');                    
+
+            return view('Shopping_Cart', ['title' => 'Welcome '.$data_user->name, 'user' => $data_user,'dttransaksi' => $data_transaksi, 'total_price' => $total_price]);    
         }
 }
