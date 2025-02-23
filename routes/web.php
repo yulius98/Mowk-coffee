@@ -41,6 +41,8 @@ Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
 
+Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
+
 
 
 

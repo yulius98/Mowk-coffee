@@ -82,6 +82,7 @@ class ShoppingCartController extends Controller
                             ->where('trx.nama_pembeli', $username)
                             ->where('trx.status_transaksi', 'pending')
                             ->select(
+                                'trx.id',
                                 'trx.nama_pembeli',
                                 'trx.nama_product',
                                 'prod.image',
@@ -101,5 +102,43 @@ class ShoppingCartController extends Controller
                             ->sum('total_price');                    
 
             return view('Shopping_Cart', ['title' => 'Welcome '.$data_user->name, 'user' => $data_user,'dttransaksi' => $data_transaksi, 'total_price' => $total_price]);    
+        }
+
+        public function DeleteShoppingCart($id,$name_buyer)
+        {
+            
+            $delete_transaksi = DB::table('tbltransaksis')
+                                ->where('id', $id)
+                                ->delete();
+
+            $data_user = DB::table('users')
+                            ->where('username', $name_buyer)
+                            ->first();
+
+            $data_transaksi = DB::table('tbltransaksis as trx')
+                            ->leftJoin('tblproducts as prod', 'trx.nama_product', '=', 'prod.nama_product')
+                            ->where('trx.nama_pembeli', $name_buyer)
+                            ->where('trx.status_transaksi', 'pending')
+                            ->select(
+                                'trx.id',
+                                'trx.nama_pembeli',
+                                'trx.nama_product',
+                                'prod.image',
+                                'trx.jumlah_product',
+                                'prod.description',
+                                'trx.total_price',
+                                'trx.alamat_pengiriman',
+                                'trx.no_HP',
+                                'trx.status_transaksi'
+                            )
+                            ->orderBy('trx.id', 'desc')
+                            ->get();
+
+            $total_price = DB::table('tbltransaksis as trx')
+                            ->where('nama_pembeli', $name_buyer)
+                            ->where('status_transaksi', 'pending')
+                            ->sum('total_price');
+
+            return view('Shopping_Cart', ['title' => 'Welcome '.$data_user->name, 'user' => $data_user,'dttransaksi' => $data_transaksi, 'total_price' => $total_price]);
         }
 }

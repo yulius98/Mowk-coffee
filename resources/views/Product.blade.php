@@ -1,10 +1,10 @@
 <x-nav-bar/>
 <x-layout>
-     <!-- Products Grid -->
-     
-    <div class="bg-[rgb(240,180,140)]">
-        <div class="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
-          <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+    <!-- Products Grid -->
+    
+    <div class="bg-[rgb(240,180,140)] pt-20"> <!-- Added pt-20 for top padding to prevent navbar overlap -->
+        <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8"> <!-- Increased padding -->
+          <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-6">Customers also purchased</h2> <!-- Added mb-6 for better spacing -->
       
           <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             @foreach($dt_product_not_login as $dt_product)

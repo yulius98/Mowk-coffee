@@ -1,4 +1,4 @@
-<nav class="bg-[#331C09]">
+<nav class="fixed w-full top-0 z-50 bg-[#331C09] transition-all duration-300 ">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">  

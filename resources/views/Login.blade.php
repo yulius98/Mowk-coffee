@@ -1,4 +1,6 @@
+<x-nav-bar/>
 <x-layout-no-header>
+
     <div class="flex min-h-full flex-col justify-center px-4 py-12 lg:px-8 ">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img class="mx-auto h-40 w-auto" src="Logo.jpg" alt="Your Company">

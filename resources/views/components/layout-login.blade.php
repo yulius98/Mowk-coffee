@@ -9,12 +9,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <title>Mowks Coffe</title>
   </head>
- <body>
-        <div class="min-h-full">
-        {{ $slot }}
-        <script>
-          feather.replace();
-        </script>
-        </div>
-  </body>
+ <body class="h-full">
+  <div class="min-h-full">
+    {{ $slot }}
+      <script>
+        feather.replace();
+      </script>
+  </div>
+</body>
 </html>

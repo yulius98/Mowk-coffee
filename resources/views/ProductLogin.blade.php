@@ -5,7 +5,7 @@
         <a class="rounded-md px-3 py-2 text-sm font-medium text-[rgb(240,180,140)]">{{ $user }}</a>
     </body>
 </div>
-<div id="product-list" class="grid grid-cols-1 sm:grid-cols-4 sd:grid-cols-4 lg:grid-cols-16 gap-4 ml-8 mr-8">
+<div id="product-list" class="grid grid-cols-1 sm:grid-cols-4 sd:grid-cols-4 lg:grid-cols-16 gap-4 ml-8 mr-8 mt-10">
     @foreach($product as $dataproduct)
     <form id="product" class="space-y-6" action="/addshoppingcart" method="post" enctype="multipart/form-data">
         @csrf
