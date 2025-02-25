@@ -46,7 +46,7 @@
                         </div>
                         <div class="flex justify-end space-x-3 mt-5">
                             <button type="button" 
-                                    class="bg-[#9b6c60] text-white px-4 py-2 rounded-md hover:bg-[#54372f]" onclick="window.location.href='/CRUIDSeller'">
+                                    class="bg-[#9b6c60] text-white px-4 py-2 rounded-md hover:bg-[#54372f]" onclick="window.location.href='/CRUIDSeller/{{ $user }}'">
                                 Cancel
                             </button>
                             <button type="submit"

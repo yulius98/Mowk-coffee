@@ -8,7 +8,7 @@
         </div>
         <div class="hidden md:block ">
           <div class="ml-10 flex items-baseline space-x-4">
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Profile User</a>
           </div>
         </div>
       </div>

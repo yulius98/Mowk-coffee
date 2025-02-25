@@ -1,7 +1,7 @@
 <x-nav-bar-shoppingcart :title="$title"/>       
 <header class="bg-[rgb(240,219,205)] w-full shadow-md">
     <div class="max-w-7xl mx-auto py-6 px-6">
-        <div class="space-y-3 border-l-4 border-[rgb(200,160,120)] pl-4">
+        <div class="space-y-3 border-l-4 border-[rgb(200,160,120)] pl-4 ">
             <h1 class="text-xl font-bold text-gray-900">Buyer's Information</h1>
             <div class="space-y-2">
                 <div class="flex items-center">
@@ -23,7 +23,7 @@
 <x-layout>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="bg-[rgb(240,180,140)]">
-        <div class="px-6 py-4 border-b border-[rgb(200,160,120)] rounded-2xl">
+        <div class="px-6 py-2 border-b border-[rgb(200,160,120)] rounded-2xl">
             <h2 class="text-xl font-semibold text-gray-900">Shopping Cart</h2>
         </div>
         

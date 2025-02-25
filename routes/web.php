@@ -43,7 +43,7 @@ Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
 
 Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
 
-
+Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUIDSeller']);
 
 
 

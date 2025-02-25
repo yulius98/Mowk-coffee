@@ -1,6 +1,6 @@
 <x-layout-cruid-seller>
     <x-slot:title>{{ $title }}</x-slot:title>
-        
+            
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add Produk Coffee Been</h3>
             <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="flex justify-end space-x-3 mt-5">
                         <button type="button" 
-                                class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600" onclick="window.location.href='/CRUIDSeller'">
+                                class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600" onclick="window.location.href='/CRUIDSeller/{{$nama_seller}}'">
                             Cancel
                         </button>
                         

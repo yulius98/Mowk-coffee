@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Validator;
 class CRUIDSellerController extends Controller
 {
     
+    public function ShowCRUIDSeller($name_seller){
+        //dd($name_seller);
+        $data_carousel = DB::table('carousels')->get();
+        
+        // Mengambil data biji kopi dan jumlah stock biji kopi
+        $data_biji_kopi = DB::table('tblproducts as p')
+                        ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                        ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
+                        ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                        ->paginate(10);
+        
+        return view('CRUIDSeller', ['title' => 'Welcome '.$name_seller, 'user' => $name_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
+                                        
+    }
+
+
     public function ShowAddProduct($name_seller){
         //dd($name_seller);
         return view('ModalForm', ['title' => 'Welcome '.$name_seller, 'nama_seller' => $name_seller]);
@@ -93,7 +109,6 @@ class CRUIDSellerController extends Controller
         $product->image = $request->file('image')->store('product-images');
         $product->price = $request->price;
         $product->description = $request->description;
-        
         $product->save();
 
         $data_biji_kopi = DB::table('tblproducts as p')

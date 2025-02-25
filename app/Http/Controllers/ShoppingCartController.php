@@ -107,6 +107,21 @@ class ShoppingCartController extends Controller
         public function DeleteShoppingCart($id,$name_buyer)
         {
             
+            $Get_dt_transaksi = DB::table('tbltransaksis')
+                            ->where('id', $id)
+                            ->first();
+
+            $delete_stock = DB::table('tblstock_logs')
+                            ->where('nama_product', $Get_dt_transaksi->nama_product)
+                            ->where('jumlah_product_jual', $Get_dt_transaksi->jumlah_product)
+                            ->delete();
+            
+            $delete_tblpenjualan = DB::table('tblpenjualans')
+                                ->where('nama_pembeli','=',$Get_dt_transaksi->nama_pembeli)
+                                ->where('nama_product','=',$Get_dt_transaksi->nama_product)
+                                ->where('jumlah_product','=',$Get_dt_transaksi->jumlah_product)
+                                ->delete();
+            
             $delete_transaksi = DB::table('tbltransaksis')
                                 ->where('id', $id)
                                 ->delete();
