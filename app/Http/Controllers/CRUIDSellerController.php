@@ -46,6 +46,14 @@ class CRUIDSellerController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
+
+        $validator_product = DB::table('tblproducts')
+                            ->where('nama_product', '=',$request->nama_product)
+                            ->get();
+
+        if ($validator_product->count() > 0) {
+            return redirect()->back()->withInput()->withErrors('Product already exist');
+        }
         // Menyimpan data produk pada table produk
         $add_coffe_been = new tblproduct();
         $add_coffe_been->nama_product = $request->nama_product;
@@ -90,6 +98,43 @@ class CRUIDSellerController extends Controller
         
     }
 
+    public function add_stock($id,$user) {
+        $edit_produk = tblproduct::find($id);
+        //dd($user);   
+        return view('ModalForm_AddStock', ['title' => 'Welcome '.$user, 'edit_produk' =>$edit_produk,'user' => $user]);             
+        
+    }
+
+    public function Tambah_Stock(Request $request) {
+        //dd($request);
+
+        // Menambahkan stock pada table stok
+        $add_stock = new tblstock_log();
+        $add_stock->nama_product = $request->nama_product;
+        $add_stock->jumlah_product_beli = $request->stock;
+        $add_stock->jumlah_product_jual = 0;
+        $add_stock->save();
+
+        // Menyimpan data produk pada table pembelian
+        $add_pembelian = new tblpembelian();
+        $add_pembelian->nama_seller = $request->user;
+        $add_pembelian->nama_product = $request->nama_product;
+        $add_pembelian->jumlah_product = $request->stock;
+        $add_pembelian->save();
+
+        $data_carousel = DB::table('carousels')->get();
+        
+        // Mengambil data biji kopi dan jumlah stock biji kopi
+        $data_biji_kopi = DB::table('tblproducts as p')
+                        ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                        ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
+                        ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                        ->paginate(10);
+        
+        return view('CRUIDSeller', ['title' => 'Welcome '.$request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);                
+    }
+
+    
     public function UpdateProductCoffeeBeen(Request $request, $id,$user) {
         // Mengambil produk berdasarkan ID  
         

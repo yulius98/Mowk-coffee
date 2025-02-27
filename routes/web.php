@@ -39,6 +39,8 @@ Route::get('/Logout',[AuthLogin::class,'Logout']);
 
 Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
 
+Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
+
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
 
 Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
@@ -58,5 +60,7 @@ Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']
 Route::post('/Carousel',[CarouselController::class,'AddAds']);
 
 Route::post('/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
+
+Route::post('/add_stock',[CRUIDSellerController::class,'Tambah_Stock']);
 
 Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']);
