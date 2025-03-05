@@ -8,9 +8,41 @@
           
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Home</a>
-              <a href="/Product" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+              <div class="w-auto">
+                <button
+                    type="button" 
+                    @click="isOpen = !isOpen"
+                    class="rounded-md px-4 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white flex items-center"
+                    id="options-menu"
+                    aria-haspopup="true"
+                    aria-expanded="true">
+                    Product
+                    <svg class="ml-2 h-5 w-5 text-[#edaa6f]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+              <div 
+                  x-show="isOpen"
+                  x-transition:enter="transition ease-out duration-100 transform"
+                  x-transition:enter-start="opacity-0 scale-95"
+                  x-transition:enter-end="opacity-100 scale-100"
+                  x-transition:leave="transition ease-in duration-75 transform"
+                  x-transition:leave-start="opacity-100 scale-100"
+                  x-transition:leave-end="opacity-0 scale-95"
+                  class="absolute left-60 z-10 mt-10 w-56 origin-top-right divide-y divide-[#3c220d] rounded-md bg-[#784820] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" 
+                  role="menu" 
+                  aria-orientation="vertical" 
+                  aria-labelledby="menu-button" 
+                  tabindex="-1">
+                  
+                  <div class=" py-2" role="none">
+                      <a href="/Product" class="bg-[#784820] text-white hover:bg-[#3c220d] hover:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Been</a>  
+                      <a href="#" class="{{ request()->is('/produkrumah') ? 'bg-[#784820] text-white' : 'text-white hover:bg-[#3c220d] hover:text-white' }} block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Machine</a>    
+                  </div>
+                </div>
               <a href="/Event" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Event</a>
               <a href="/About" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">About</a>  
             </div>
@@ -48,7 +80,8 @@
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <a href="/" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Home</a>
-            <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+            <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Coffee Been</a>
+            <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
             <a href="/About" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">About</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">

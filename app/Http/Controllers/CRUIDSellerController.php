@@ -60,6 +60,7 @@ class CRUIDSellerController extends Controller
         $add_coffe_been->image = $request->file('image')->store('product-images');
         $add_coffe_been->description = $request->description;
         $add_coffe_been->price = $request->price;
+        $add_coffe_been->category = 'Coffee Been';
         $add_coffe_been->save();
 
         // Menyimpan data produk pada table pembelian

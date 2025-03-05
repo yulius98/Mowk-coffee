@@ -27,6 +27,7 @@ class ProductShow extends Controller
                     WHERE tblstock_logs.nama_product = p.nama_product
                 ), 0) as stock')
             )
+            ->where('p.category','=', 'Coffee Been')
             ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image')
             ->paginate(10);
 
