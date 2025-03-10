@@ -7,6 +7,7 @@ use App\Http\Controllers\RegController;
 use App\Http\Controllers\CRUIDSellerController;
 use App\Http\Controllers\ProductShow;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\CheckoutController;
 
 
 
@@ -47,9 +48,13 @@ Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
 
+Route::get('/ProductMachineCoffee', [ProductShow::class, 'ProductMachineCoffeeShowNotLogin']);
+
 Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
 
 Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUIDSeller']);
+
+Route::get('/Checkout/{user}',[CheckoutController::class,'Checkout']);
 
 
 
