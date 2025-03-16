@@ -8,12 +8,12 @@
           
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Home</a>
+              <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Home</a>
               <div class="w-auto">
                 <button
                     type="button" 
                     @click="isOpen = !isOpen"
-                    class="rounded-md px-4 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white flex items-center"
+                    class="rounded-md px-4 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white flex items-center"
                     id="options-menu"
                     aria-haspopup="true"
                     aria-expanded="true">
@@ -39,21 +39,23 @@
                   tabindex="-1">
                   
                   <div class=" py-2" role="none">
-                      <a href="/Product" class="bg-[#784820] text-white hover:bg-[#3c220d] hover:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Been</a>  
-                      <a href="/ProductMachineCoffee" class="{{ request()->is('/produkrumah') ? 'bg-[#784820] text-white' : 'text-white hover:bg-[#3c220d] hover:text-white' }} block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Machine</a>    
+                      <a href="/Product" class="text-white hover:bg-[#522E0E] hover:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Been</a>  
+                      <a href="/ProductMachineCoffee" class="{{ request()->is('/produkrumah') ? 'text-white' : 'text-white hover:bg-[#522E0E] hover:text-white' }} block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Coffee Machine</a>    
                   </div>
                 </div>
-              <a href="/Event" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Event</a>
-              <a href="/About" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">About</a>  
+              <a href="/Event" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Event</a>
+              <a href="/About" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">About</a>  
             </div>
           </div>
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-              <a href="/Register" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Register</a>
-              <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Login</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">
-                <i data-feather="shopping-cart"></i>
+              <a href="/Register" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Register</a>
+              <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Login</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13m-10 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                </svg>
               </a>
           </div> 
         </div>
@@ -79,17 +81,21 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-            <a href="/" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Home</a>
-            <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Coffee Been</a>
-            <a href="/ProductCoffeeMachine" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
-            <a href="/About" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">About</a>
+            <a href="/" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Home</a>
+            <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Been</a>
+            <a href="/ProductCoffeeMachine" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
+            <a href="/About" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">About</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-          <a href="/Register" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Register</a>
-          <a href="/Login" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Login</a>
-          <a href="#" class="block rounded-md px-3 py-2 text-right font-thin text-gray-300 hover:bg-[#522E0E] hover:text-white">
-            <i data-feather="shopping-cart"></i>
+          <a href="/Register" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Register</a>
+          <a href="/Login" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Login</a>
+          <a href="#" class="block rounded-md px-3 py-2 text-right font-thin text-white hover:bg-[#522E0E] hover:text-white">
+            <!--<i data-feather="shopping-cart"></i> -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13m-10 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            </svg>
+            
           </a>
         </div>
       </div>  

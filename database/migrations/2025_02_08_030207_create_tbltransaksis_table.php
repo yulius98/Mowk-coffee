@@ -19,7 +19,9 @@ return new class extends Migration
             $table->decimal('total_price',10,2);
             $table->string('alamat_pengiriman')->nullable();
             $table->string('no_HP')->nullable();
-            $table->enum('status_transaksi',['pending','paid','send']);
+            $table->enum('status_transaksi', ['pending', 'paid', 'send', 'success', 'failed', 'expired']);
+            $table->string('snap_token')->nullable();
+            $table->string('order_id')->nullable();
             $table->timestamps();
         });
     }

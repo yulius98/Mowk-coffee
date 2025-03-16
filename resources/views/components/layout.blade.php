@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full bg-[rgb(240,180,140)]">
+<html class="h-full bg-[rgb(221,194,175)]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
     <title>Mowks Coffe</title>
   </head>
 <body class="h-full">
@@ -19,6 +20,7 @@
     <script>
       feather.replace();
     </script>    
+    @stack('scripts')
   </div>
 </body>
 </html>

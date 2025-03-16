@@ -13,7 +13,7 @@ class tbltransaksi extends Model
         'totalprice',
         'alamat_pengiriman',
         'no_HP',
-        'status_transaksi'
-        
+        'status_transaksi',
+        'snap_token'
     ];
 }

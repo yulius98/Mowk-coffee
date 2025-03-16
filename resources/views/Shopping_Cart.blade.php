@@ -27,7 +27,7 @@
             <h2 class="text-xl font-semibold text-gray-900">Shopping Cart</h2>
         </div>
         
-<ul role="list" class="space-y-4 p-4">
+        <ul role="list" class="space-y-4 p-4">
             @foreach ($dttransaksi as $transaksi)
             <li class="p-6 hover:bg-[rgb(245,210,188)] transition duration-150 ease-in-out bg-[rgb(240,219,205)] rounded-xl shadow-lg border border-[rgb(200,160,120)]"> 
                 <div class="flex items-center space-x-6">
@@ -74,21 +74,23 @@
                 <p class="text-sm text-gray-600 mb-6">Shipping and taxes calculated at checkout.</p>
                 
                 <div class="space-y-4">
-                    <a href="#" 
-                       class="flex items-center justify-center rounded-lg bg-[rgb(200,160,120)] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[rgb(180,140,100)] transition duration-150 ease-in-out">
+                    <button type="button" id="pay-button"
+                        class="w-full flex items-center justify-center rounded-lg bg-[rgb(200,160,120)] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[rgb(180,140,100)] transition duration-150 ease-in-out" onclick="window.location.href='/Checkout/{{$user->name}}/{{$total_price}}'">
                         Proceed to Checkout
-                    </a>
+                    </button>
                     
                     <div class="flex justify-center items-center space-x-2 text-sm">
                         <span class="text-gray-600">or</span>
-                        <button type="button" 
+                        <a href="/Product" 
                                 class="font-medium text-[rgb(200,160,120)] hover:text-[rgb(180,140,100)] transition duration-150 ease-in-out">
                             Continue Shopping
                             <span aria-hidden="true"> →</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
     </div>
 </div>
 </x-layout>
+
+

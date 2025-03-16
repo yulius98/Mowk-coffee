@@ -1,0 +1,12 @@
+warna yang digunakan pada website mowk-coffee :
+
+* Nav bar
+- background : [#331C09]
+- hover      : [#522E0E]
+- font       : white
+
+* layout
+warna background :[rgb(221,194,175)]
+
+
+* ukuran gambar produk : 260 x 462 pixel

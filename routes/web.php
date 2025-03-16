@@ -9,12 +9,9 @@ use App\Http\Controllers\ProductShow;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\CheckoutController;
 
-
-
 Route::get('/', function () {
     return view('home');
 });
-
 
 Route::get('/About', function () {
     return view('About');
@@ -54,9 +51,15 @@ Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::cla
 
 Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUIDSeller']);
 
-Route::get('/Checkout/{user}',[CheckoutController::class,'Checkout']);
+Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
 
+// Payment success page
+Route::get('/payment-success', function () {
+    return redirect('/Product')->with('success', 'Payment completed successfully!');
+});
 
+// Midtrans payment notification handler
+Route::post('/payment/notification', [CheckoutController::class, 'callback']);
 
 Route::post('/Register', [RegController::class, 'RegUser']);
 

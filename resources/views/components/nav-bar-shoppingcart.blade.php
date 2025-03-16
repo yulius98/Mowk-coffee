@@ -8,7 +8,7 @@
         </div>
         <div class="hidden md:block ">
           <div class="ml-10 flex items-baseline space-x-4">
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Profile User</a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Profile User</a>
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
       <div class="hidden md:block">
         <div class="ml-4 flex items-center md:ml-6">
           <span class="text-white">{{ $title }}</span>
-          <a href="/Logout" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+          <a href="/Logout" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Logout</a>
         </div>
       </div>
 
@@ -38,12 +38,12 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <a href="/ProductLogin" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+        <a href="/ProductLogin" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <span class="text-white">{{ $title }}</span>
-          <a href="/Logout" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+          <a href="/Logout" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Logout</a>
         </div>
       </div>
     </div>

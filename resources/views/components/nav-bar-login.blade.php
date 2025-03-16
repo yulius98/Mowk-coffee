@@ -8,7 +8,7 @@
         </div>
         <div class="hidden md:block ">
           <div class="ml-10 flex items-baseline space-x-4">
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product</a>
           </div>
         </div>
       </div>
@@ -16,9 +16,12 @@
       <div class="hidden md:block">
         <div class="ml-4 flex items-center md:ml-6">
             <span class="text-white">{{ $title }}</span>
-            <a href="/Logout" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
-            <a href="/ShoppingCart/{{ $user }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white relative">
-              <i data-feather="shopping-cart"></i>
+            <a href="/Logout" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Logout</a>
+            <a href="/ShoppingCart/{{ $user }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white relative">
+              <!-- <i data-feather="shopping-cart"></i> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13m-10 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+              </svg>
               <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {{ $pendingCount }}
               </span>
@@ -44,13 +47,16 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <a href="/ProductLogin" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product</a>
+        <a href="/ProductLogin" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <span class="text-white">{{ $title }}</span>
-          <a href="/ShoppingCart/{{ $user }}" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white relative">
-            <i data-feather="shopping-cart"></i>
+          <a href="/ShoppingCart/{{ $user }}" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white relative">
+            <!--<i data-feather="shopping-cart"></i> -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13m-10 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            </svg>
             <span class="absolute top-0 left-7 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
               {{ $pendingCount }}
             </span>

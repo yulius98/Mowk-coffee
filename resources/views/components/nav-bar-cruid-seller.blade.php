@@ -4,16 +4,16 @@
         <div class="flex items-center">  
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Cofee Been</a>  
-              <a href="/Carousel" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Promo Ads</a>
+              <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Cofee Been</a>  
+              <a href="/Carousel" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Promo Ads</a>
             </div>
           </div>
 
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <a class="rounded-md px-3 py-2 text-sm font-medium text-gray-300">{{ $slot}}</a>
-            <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+            <a class="rounded-md px-3 py-2 text-sm font-medium text-white">{{ $slot}}</a>
+            <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Logout</a>
               
           </div> 
         </div>
@@ -49,11 +49,11 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-            <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Product Cofee Been</a>  
+            <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Cofee Been</a>  
       </div>
     
         <div class="mt-3 space-y-1 px-2">
-                <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-[#522E0E] hover:text-white">Logout</a>
+                <a href="/Login" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Logout</a>
         </div>
         
     </div>
