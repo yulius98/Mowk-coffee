@@ -10,3 +10,5 @@ warna background :[rgb(221,194,175)]
 
 
 * ukuran gambar produk : 260 x 462 pixel
+
+* ukuran carousel : 500 x 200

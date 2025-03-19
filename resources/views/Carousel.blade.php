@@ -1,4 +1,5 @@
 <x-layout-cruid-seller>
+<x-slot:title>{{ $title }}</x-slot:title>
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Promo Ads</h3>
             <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
@@ -20,6 +21,7 @@
                         <label for="image" class="block text-sm font-bold text-black">Promo Ads Image</label>
                         <div class="mb-3">
                             <input class="form-control" type="file" id="image" name="image">
+                            <input type="hidden" id="nama_seller" name="nama_seller" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" value="{{ $nama_seller }}">
                         </div>
                     </div>
                     <div class="flex justify-end space-x-3 mt-5">

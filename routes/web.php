@@ -53,6 +53,8 @@ Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUID
 
 Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
 
+Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
+
 // Payment success page
 Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');

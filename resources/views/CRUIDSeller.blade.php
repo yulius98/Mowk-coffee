@@ -11,7 +11,7 @@
         <h2 class="text-2xl font-bold text-gray-800">Product Ads</h2>
         <div class="flex items-center gap-4">
             <button type="button"
-            class="bg-[#A14C36] hover:bg-[#723322] text-white px-4 py-2 rounded-lg shadow-sm transition duration-150" onclick="window.location.href='/Carousel'">
+            class="bg-[#A14C36] hover:bg-[#723322] text-white px-4 py-2 rounded-lg shadow-sm transition duration-150" onclick="window.location.href='/Carousel/{{ $user }}'">
             Add Product Ads
             </button>
         </div>    
