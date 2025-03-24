@@ -68,4 +68,32 @@ class CheckoutController extends Controller
     
         return view('Payment', ['title' => 'Welcome '.$user->name,'snapToken' => $snapToken,'user' => $user->name,'total_price' => $total_price,'dttransaksi' => $data_transaksi]);
     }
+
+    public function Success($username){
+        
+        $user = DB::table('users')
+                    ->where('name', $username)
+                    ->first();
+
+        
+                
+        $transactions = DB::table('tbltransaksis')
+                        ->where('nama_pembeli', $username)
+                        ->where('status_transaksi', 'pending');
+
+        $transactions->update(['status_transaksi' => 'paid']);
+
+        $data_biji_kopi = DB::table('tblproducts as p')
+                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                            ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
+                            ->groupBy('p.id','p.nama_product','p.price','p.description', 'p.image')
+                            ->get();
+
+        $data_transaksi = DB::table('tbltransaksis')
+                            ->where('nama_pembeli', $username)
+                            ->where('status_transaksi', 'pending')
+                            ->count();
+        
+        return view('ProductLogin', ['title' => 'Welcome '.$username->nama_pembeli, 'user' => $user->nama_pembeli,'product' => $data_biji_kopi,'count_shopping_cart' => $data_transaksi]);
+    }
 }

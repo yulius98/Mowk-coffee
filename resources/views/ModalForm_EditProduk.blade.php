@@ -26,7 +26,7 @@
 
                         <div>
                             <label class="block text-sm font-bold text-black">Price</label>
-                            <input type="text" id="price" name="price" value="{{ $edit_produk->price }}" required 
+                            <input type="number" id="price" name="price" value="{{ $edit_produk->price }}" required 
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         </div>
 

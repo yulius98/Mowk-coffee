@@ -6,11 +6,7 @@
         <div class="shrink-0">
             <img class="h-14 w-auto rounded-lg shadow-md object-cover my-1 hover:opacity-90" src="/Logo.jpg" alt="Mowk Coffee">
         </div>
-        <div class="hidden md:block ">
-          <div class="ml-10 flex items-baseline space-x-4">
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Profile User</a>
-          </div>
-        </div>
+        
       </div>
       
       <div class="hidden md:block">

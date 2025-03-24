@@ -3,10 +3,10 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">  
           <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Cofee Been</a>  
+            <!--<div class="ml-10 flex items-baseline space-x-4">
+              <a href="/CRUIDSeller" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product</a>  
               <a href="/Carousel" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Promo Ads</a>
-            </div>
+            </div> -->
           </div>
 
         </div>

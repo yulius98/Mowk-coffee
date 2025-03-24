@@ -22,19 +22,19 @@
 </header>
 <x-layout>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="bg-[rgb(240,180,140)]">
+    <div class="bg-[rgb(221,194,175)] rounded-lg shadow-lg">
         <div class="px-6 py-2 border-b border-[rgb(200,160,120)] rounded-2xl">
             <h2 class="text-xl font-semibold text-gray-900">Shopping Cart</h2>
         </div>
         
         <ul role="list" class="space-y-4 p-4">
             @foreach ($dttransaksi as $transaksi)
-            <li class="p-6 hover:bg-[rgb(245,210,188)] transition duration-150 ease-in-out bg-[rgb(240,219,205)] rounded-xl shadow-lg border border-[rgb(200,160,120)]"> 
+            <li class="p-6 hover:bg-[rgb(240,219,205)] transition duration-150 ease-in-out bg-[rgb(240,219,205)] rounded-xl shadow-lg border border-[rgb(200,160,120)]"> 
                 <div class="flex items-center space-x-6">
                     <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg border border-[rgb(200,160,120)] shadow-sm">
                         <img src="{{ asset('storage/'. $transaksi->image)}}" 
                              alt="{{ $transaksi->nama_product }}" 
-                             class="h-full w-full object-cover object-center">
+                             class="size-fit object-cover object-center">
                     </div>
                     
                     <div class="flex-1 flex flex-col">
@@ -45,7 +45,7 @@
                             </p>
                         </div>
                         
-                        <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ $transaksi->description }}</p>
+                        <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ Str::limit($transaksi->description,100) }}</p>
                         
                         <div class="mt-4 flex items-center justify-between">
                             <div class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20">

@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
             
         <div class="mt-3">
-            <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add Produk Coffee Been</h3>
+            <h3 class="text-lg font-medium leading-6 text-gray-900 mt-20">Add Produk {{ $category }}</h3>
             <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -18,6 +18,7 @@
                     
                     <div>
                         <input type="hidden" id="nama_seller" name="nama_seller" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" value="{{ $nama_seller }}">
+                        <input type="hidden" id="jenis_product" name="jenis_product" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" value="{{ $category }}">
                     </div>
 
                     <div>
@@ -28,13 +29,13 @@
 
                     <div>
                         <label class="block text-sm font-bold text-black">Number of Product</label>
-                        <input type="text" id="jumlah_product" name="jumlah_product" required 
+                        <input type="number" id="jumlah_product" name="jumlah_product" required 
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
                     </div>
 
                     <div>
                         <label class="block text-sm font-bold text-black">Price</label>
-                        <input type="text" id="price" name="price" required 
+                        <input type="number" id="price" name="price" required 
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
                     </div>
                     <div>

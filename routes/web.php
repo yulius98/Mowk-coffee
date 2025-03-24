@@ -8,6 +8,7 @@ use App\Http\Controllers\CRUIDSellerController;
 use App\Http\Controllers\ProductShow;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('home');
@@ -35,7 +36,7 @@ Route::get('/Event', function () {
 
 Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
 
-Route::get('/add_produk/{name_seller}',[CRUIDSellerController::class,'ShowAddProduct']);
+Route::get('/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
 
 Route::get('/Logout',[AuthLogin::class,'Logout']);
 
@@ -54,6 +55,12 @@ Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUID
 Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
 
 Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get('/Edit_Profile/{user}', [RegController::class, 'Show_Edit_Profile']);
+
+Route::get('/success/{user}',[CheckoutController::class,'Success']);
 
 // Payment success page
 Route::get('/payment-success', function () {
@@ -78,3 +85,5 @@ Route::post('/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdatePr
 Route::post('/add_stock',[CRUIDSellerController::class,'Tambah_Stock']);
 
 Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']);
+
+Route::post('/Edit_Profile/{user}',[RegController::class,'EditProfile']);

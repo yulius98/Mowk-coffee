@@ -1,3 +1,4 @@
+<x-nav-bar/>
 <x-layout-no-header>
 <div>
     <p>About me</p>
