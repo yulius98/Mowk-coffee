@@ -61,7 +61,7 @@ class RegController extends Controller
     }
 
     public function Show_Edit_Profile($user){
-        $data_user = User::where('username',$user)->first();
+        $data_user = User::where('name',$user)->first();
 
         $data_transaksi = DB::table('tbltransaksis')
                             ->where('nama_pembeli', $data_user->name)

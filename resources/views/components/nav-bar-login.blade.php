@@ -9,7 +9,12 @@
         <div class="hidden md:block ">
           <div class="ml-10 flex items-baseline space-x-4">
             <a href="/Edit_Profile/{{ $user }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Edit Profile</a>
-          </div>
+          </div>  
+        </div>
+        <div class="hidden md:block ">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="/Order_Status/{{ $user }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Order Status</a>
+          </div>  
         </div>
       </div>
 
@@ -47,7 +52,10 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <a href="/ProductLogin" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product</a>
+        <a href="/Edit_Profile/{{ $user }}" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Edit Profile</a>
+      </div>
+      <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <a href="/Order_Status/{{ $user }}" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Order Status</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">

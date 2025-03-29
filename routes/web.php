@@ -62,6 +62,8 @@ Route::get('/Edit_Profile/{user}', [RegController::class, 'Show_Edit_Profile']);
 
 Route::get('/success/{user}',[CheckoutController::class,'Success']);
 
+Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
+
 // Payment success page
 Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');

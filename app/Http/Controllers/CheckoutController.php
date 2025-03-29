@@ -94,6 +94,6 @@ class CheckoutController extends Controller
                             ->where('status_transaksi', 'pending')
                             ->count();
         
-        return view('ProductLogin', ['title' => 'Welcome '.$username->nama_pembeli, 'user' => $user->nama_pembeli,'product' => $data_biji_kopi,'count_shopping_cart' => $data_transaksi]);
+        return view('ProductLogin', ['title' => 'Welcome '.$username, 'user' => $user->name ,'product' => $data_biji_kopi,'count_shopping_cart' => $data_transaksi]);
     }
 }

@@ -75,7 +75,7 @@ class ShoppingCartController extends Controller
         {
             
             $data_user = DB::table('users')
-                            ->where('username', $username)
+                            ->where('name', $username)
                             ->first();
             $data_transaksi = DB::table('tbltransaksis as trx')
                             ->leftJoin('tblproducts as prod', 'trx.nama_product', '=', 'prod.nama_product')

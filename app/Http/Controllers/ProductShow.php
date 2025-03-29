@@ -59,8 +59,39 @@ class ProductShow extends Controller
             ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image')
             ->paginate(10);
 
-            
-            
             return view('ProductMachineCoffee',['title'=>'Machine Coffee'], compact('Carousel','dt_product_not_login'));
     }
+
+    public function Order_Status_Buyer($name_buyer)
+    {
+        $data_user = DB::table('users')
+                            ->where('name', $name_buyer)
+                            ->first();
+        $dt_order_status = DB::table('tbltransaksis as trx')
+                            ->leftJoin('tblproducts as prod', 'trx.nama_product', '=', 'prod.nama_product')
+                            ->where('trx.nama_pembeli', $name_buyer)
+                            ->select(
+                                'trx.id',
+                                'trx.order_id',
+                                'trx.nama_pembeli',
+                                'trx.nama_product',
+                                'prod.image',
+                                'trx.jumlah_product',
+                                'prod.description',
+                                'trx.total_price',
+                                'trx.alamat_pengiriman',
+                                'trx.no_HP',
+                                'trx.status_transaksi'
+                            )
+                            ->orderBy('trx.order_id')
+                            ->get();
+
+        $data_transaksi = DB::table('tbltransaksis')
+                            ->where('nama_pembeli', $name_buyer)
+                            ->where('status_transaksi', 'pending')
+                            ->count();
+                   
+        return view('Order_Status_Buyer',['title' => 'Welcome '.$data_user->name, 'count_shopping_cart' => $data_transaksi,'user' => $data_user,'dttransaksi' => $dt_order_status]);
+    }
+
 }

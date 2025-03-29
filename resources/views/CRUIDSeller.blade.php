@@ -75,7 +75,7 @@
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->nama_product}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->stock}}</td>        
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtbiji_kopi->price,0,',','.')}}</td>
-                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->description}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{ Str::limit($dtbiji_kopi->description, 50, '...') }}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">
                                 <img src="{{ asset('storage/'. $dtbiji_kopi->image)}}" alt="Product Image" class="w-[20%] h-auto object-cover">
                             </td>
@@ -130,7 +130,7 @@
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->nama_product}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->stock}}</td>        
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtmesin_kopi->price,0,',','.')}}</td>
-                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->description}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{ Str::limit($dtmesin_kopi->description,50, '...') }}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">
                                 <img src="{{ asset('storage/'. $dtmesin_kopi->image)}}" alt="Product Image" class="w-[20%] h-auto object-cover">
                             </td>
