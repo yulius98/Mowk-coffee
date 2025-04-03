@@ -216,13 +216,45 @@ class CRUIDSellerController extends Controller
                                     ->orderByDesc('order_id')
                                     ->get();
 
-        return view ('Dashboard_Order_Product',['title' => $user,'data_shipping' => $data_shipping_product]);
+        $all_status_order_product = DB::table('tbltransaksis')
+                                    ->orderByDesc('nama_pembeli')
+                                    ->get();
+
+        return view ('Dashboard_Order_Product',['title' => $user,'data_shipping' => $data_shipping_product,'all_status_order' => $all_status_order_product]);
     }
 
     public function Shipping_Product ($id, $title){
         $dt_shipping = tbltransaksi::find($id);
-                        
+        //dd($dt_shipping);                
 
         return view('Add_Shipping_Product',['title'=>$title,'dt_shipping'=>$dt_shipping, 'dttitle' =>$title]);
     }
+
+    public function Add_AWB_Bill(request $request,$user){
+        //dd($request);
+
+        //dd($user);
+        $AWB_Bill = tbltransaksi::find($request->id);
+        //dd($AWB_Bill);
+
+        $AWB_Bill->update([
+            'status_transaksi' => 'send',
+            'AWB_Bill' => $request->no_awb,
+            
+        ]);
+        
+
+        $data_shipping_product = DB::table('tbltransaksis')
+                                    ->where('status_transaksi','=','paid')
+                                    ->orderByDesc('order_id')
+                                    ->get();
+
+        $all_status_order_product = DB::table('tbltransaksis')
+                                    ->orderByDesc('nama_pembeli')
+                                    ->get();
+
+        return view ('Dashboard_Order_Product',['title' => $user,'data_shipping' => $data_shipping_product,'all_status_order' => $all_status_order_product]);
+        
+    }
+
 }

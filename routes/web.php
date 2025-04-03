@@ -68,6 +68,8 @@ Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show
 
 Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
 
+Route::get('ProductLogin/{name}', [ProductShow::class, 'ProductShowLogin']);
+
 // Payment success page
 Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');
@@ -93,3 +95,5 @@ Route::post('/add_stock',[CRUIDSellerController::class,'Tambah_Stock']);
 Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']);
 
 Route::post('/Edit_Profile/{user}',[RegController::class,'EditProfile']);
+
+Route::post('add_awb_bill/{user}',[CRUIDSellerController::class,'Add_AWB_Bill']);

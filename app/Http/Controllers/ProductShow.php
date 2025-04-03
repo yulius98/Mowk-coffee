@@ -82,7 +82,8 @@ class ProductShow extends Controller
                                 'trx.total_price',
                                 'trx.alamat_pengiriman',
                                 'trx.no_HP',
-                                'trx.status_transaksi'
+                                'trx.status_transaksi',
+                                'trx.AWB_Bill',
                             )
                             ->orderBy('trx.order_id')
                             ->get();
@@ -93,6 +94,26 @@ class ProductShow extends Controller
                             ->count();
                    
         return view('Order_Status_Buyer',['title' => 'Welcome '.$data_user->name, 'count_shopping_cart' => $data_transaksi,'user' => $data_user,'dttransaksi' => $dt_order_status]);
+    }
+
+    public function ProductShowLogin($name){
+        $dtuser = DB::table('users')
+                            ->where('name', $name)
+                            ->first();
+                            
+
+        $data_transaksi = DB::table('tbltransaksis')
+                            ->where('nama_pembeli', $dtuser->name)
+                            ->where('status_transaksi', 'pending')
+                            ->count();
+
+        $data_all_product = DB::table('tblproducts as p')
+                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                            ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
+                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->get();
+
+        return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'count_shopping_cart' => $data_transaksi,'user' => $dtuser->name,'product' => $data_all_product]);
     }
 
 }

@@ -41,6 +41,12 @@
                     <div class="flex-1 flex flex-col">
                         <div class="flex justify-between items-start">
                             <h4 class="text-lg font-semibold text-gray-900">{{ $transaksi->nama_product }}</h4>
+                            @if ($transaksi->status_transaksi == 'paid')
+                                <h5 class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-red-600">Order is being packed</h5>
+                            @elseif ($transaksi->status_transaksi == 'send')
+                                <h5 class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-black">AWB Bill No : {{ $transaksi->AWB_Bill }}</h5>
+                            @endif
+
                             <p class="text-lg font-medium text-gray-900">
                                 Rp {{ number_format((float)$transaksi->total_price, 0, ',', '.') }}
                             </p>
@@ -53,7 +59,11 @@
                                 <span class="text-sm font-medium text-gray-800">Qty: {{ $transaksi->jumlah_product }}</span>
                             </div>
                             <div>
-                                <span class=" text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</span>
+                                @if ($transaksi->status_transaksi == 'paid') 
+                                    <span class=" text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</span>
+                                @elseif ($transaksi->status_transaksi == 'send')
+                                    <span class=" text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</span>
+                                @endif
                             </div>
                             <div class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20">
                                 <span class="text-sm font-medium text-gray-800">
@@ -80,7 +90,7 @@
                     
                     <div class="flex justify-center items-center space-x-2 text-sm">
                         <span class="text-gray-600">or</span>
-                        <a href="/Product" 
+                        <a href="/ProductLogin/{{ $user->name }}" 
                                 class="font-medium text-[rgb(200,160,120)] hover:text-[rgb(180,140,100)] transition duration-150 ease-in-out">
                             Continue Shopping
                             <span aria-hidden="true"> →</span>
