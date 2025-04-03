@@ -11,7 +11,7 @@ class CarouselController extends Controller
     
     public function ShowAds($name_seller) {
         //dd($name_seller);
-        return view('Carousel', ['title' => 'Welcome '.$name_seller, 'nama_seller' => $name_seller]);
+        return view('Carousel', ['title' => $name_seller, 'nama_seller' => $name_seller]);
     }
     
     public function AddAds(Request $request) {
@@ -29,7 +29,7 @@ class CarouselController extends Controller
                          ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
                          ->paginate(10);
          
-         return view('CRUIDSeller', ['title' => 'Welcome '.$request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
+         return view('CRUIDSeller', ['title' => $request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi]);
 
          
     }

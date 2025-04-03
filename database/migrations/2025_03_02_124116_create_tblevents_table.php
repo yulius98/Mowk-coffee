@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('date_event');
             $table->string('name_event');
+            $table->enum('tiket',['free','no free']);
+            $table->decimal('harga_tiket',10,2)->nullable();
             $table->string('description_event');
             $table->string('location_event');
             $table->string('image_event');

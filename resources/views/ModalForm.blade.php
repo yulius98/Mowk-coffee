@@ -5,7 +5,7 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900 mt-20">Add Produk {{ $category }}</h3>
             <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-red-500 text-lg">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-black">Number of Product</label>
+                        <label class="block text-sm font-bold text-black">Product Stock</label>
                         <input type="number" id="jumlah_product" name="jumlah_product" required 
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
                     </div>
@@ -46,6 +46,7 @@
                     <div class="col-span-full">
                         <label for="image" class="block text-sm font-bold text-black">Product Image</label>
                         <div class="mb-3">
+                            
                             <input class="form-control" type="file" id="image" name="image">
                         </div>
                     </div>
@@ -65,6 +66,21 @@
         </div>
     
 </x-layout-cruid-seller>
+
+<script>
+    // Function to check if the image input is empty
+    function validateForm() {
+        const imageInput = document.getElementById('image');
+        
+        if (imageInput.files.length === 0) {
+            alert('Please select a product image!');
+        } else {
+            // Submit the form if the image is selected
+            
+            document.getElementById('productForm').submit();
+        }
+    }
+</script>
 
 <script>
     function previewImage(event) {

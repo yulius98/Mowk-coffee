@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\tblproduct;
 use App\Models\tblpembelian;
 use App\Models\tblstock_log;
+use App\Models\tbltransaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -31,16 +32,16 @@ class CRUIDSellerController extends Controller
                             ->where('p.category','=','Machine Coffee')
                             ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
                             ->get();
-        dd($data_mesin_kopi);    
+        //dd($data_mesin_kopi);    
         
-        return view('CRUIDSeller', ['title' => 'Welcome '.$name_seller, 'user' => $name_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
+        return view('CRUIDSeller', ['title' => $name_seller, 'user' => $name_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
                                         
     }
 
 
     public function ShowAddProduct($name_seller,$category){
         //dd($category);
-        return view('ModalForm', ['title' => 'Welcome '.$name_seller, 'nama_seller' => $name_seller, 'category' => $category]);
+        return view('ModalForm', ['title' => $name_seller, 'nama_seller' => $name_seller, 'category' => $category]);
     }
 
     public function AddProductCoffeeBeen(Request $request){
@@ -110,7 +111,7 @@ class CRUIDSellerController extends Controller
                         ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
                         ->get();
                                         
-        return view('CRUIDSeller', ['title' => 'Welcome '.$request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi , 'data_mesin_kopi' => $data_mesin_kopi]);
+        return view('CRUIDSeller', ['title' => $request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi , 'data_mesin_kopi' => $data_mesin_kopi]);
 
         
     }
@@ -118,14 +119,14 @@ class CRUIDSellerController extends Controller
     public function edit_produk($id,$user) {
         $edit_produk = tblproduct::find($id);
         //dd($user);   
-        return view('ModalForm_EditProduk', ['title' => 'Welcome '.$user, 'edit_produk' =>$edit_produk,'user' => $user]);             
+        return view('ModalForm_EditProduk', ['title' => $user, 'edit_produk' =>$edit_produk,'user' => $user]);             
         
     }
 
     public function add_stock($id,$user) {
         $edit_produk = tblproduct::find($id);
         //dd($user);   
-        return view('ModalForm_AddStock', ['title' => 'Welcome '.$user, 'edit_produk' =>$edit_produk,'user' => $user]);             
+        return view('ModalForm_AddStock', ['title' => $user, 'edit_produk' =>$edit_produk,'user' => $user]);             
         
     }
 
@@ -163,7 +164,7 @@ class CRUIDSellerController extends Controller
                         ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
                         ->get();
 
-        return view('CRUIDSeller', ['title' => 'Welcome '.$request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);                
+        return view('CRUIDSeller', ['title' => $request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);                
     }
 
     
@@ -204,7 +205,24 @@ class CRUIDSellerController extends Controller
 
         $data_carousel = DB::table('carousels')->get();
 
-        return view('CRUIDSeller', ['title' => 'Welcome '.$user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
+        return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
         
+    }
+
+
+    public function Show_Order_Shipping_Product($user){
+        $data_shipping_product = DB::table('tbltransaksis')
+                                    ->where('status_transaksi','=','paid')
+                                    ->orderByDesc('order_id')
+                                    ->get();
+
+        return view ('Dashboard_Order_Product',['title' => $user,'data_shipping' => $data_shipping_product]);
+    }
+
+    public function Shipping_Product ($id, $title){
+        $dt_shipping = tbltransaksi::find($id);
+                        
+
+        return view('Add_Shipping_Product',['title'=>$title,'dt_shipping'=>$dt_shipping, 'dttitle' =>$title]);
     }
 }

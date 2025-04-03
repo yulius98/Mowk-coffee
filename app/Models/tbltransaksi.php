@@ -14,6 +14,8 @@ class tbltransaksi extends Model
         'alamat_pengiriman',
         'no_HP',
         'status_transaksi',
-        'snap_token'
+        'AWB_Bill',
+        'snap_token',
+        'order_id'
     ];
 }

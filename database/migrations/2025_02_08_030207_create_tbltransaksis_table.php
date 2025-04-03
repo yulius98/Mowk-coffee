@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat_pengiriman')->nullable();
             $table->string('no_HP')->nullable();
             $table->enum('status_transaksi', ['pending', 'paid', 'send', 'success', 'failed', 'expired']);
+            $table->string('AWB_Bill')->nullable();
             $table->string('snap_token')->nullable();
             $table->string('order_id')->nullable();
             $table->timestamps();

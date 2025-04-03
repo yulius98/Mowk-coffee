@@ -67,6 +67,7 @@ class ProductShow extends Controller
         $data_user = DB::table('users')
                             ->where('name', $name_buyer)
                             ->first();
+                            
         $dt_order_status = DB::table('tbltransaksis as trx')
                             ->leftJoin('tblproducts as prod', 'trx.nama_product', '=', 'prod.nama_product')
                             ->where('trx.nama_pembeli', $name_buyer)

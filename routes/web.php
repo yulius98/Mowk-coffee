@@ -64,6 +64,10 @@ Route::get('/success/{user}',[CheckoutController::class,'Success']);
 
 Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
 
+Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
+
+Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
+
 // Payment success page
 Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');

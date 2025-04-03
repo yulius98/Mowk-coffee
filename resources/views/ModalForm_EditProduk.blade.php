@@ -4,7 +4,7 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Edit Produk Coffee Been</h3>
             <div class="bg-[rgb(236,222,210)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-red-500 text-lg">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>

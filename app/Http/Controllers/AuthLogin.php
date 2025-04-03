@@ -59,7 +59,7 @@ class AuthLogin extends Controller
 
             if( $dtuser->role == "seller"){
                 // Mengirimkan objek pengguna ke view
-                return view('CRUIDSeller', ['title' => 'Welcome '.$dtuser->name, 'user' => $dtuser->name,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
+                return view('CRUIDSeller', ['title' => $dtuser->name, 'user' => $dtuser->name,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
             } elseif ($dtuser->role == "buyer") {
                 // Mengirimkan objek pengguna ke view  
                 return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'count_shopping_cart' => $data_transaksi,'user' => $dtuser->name,'product' => $data_all_product]);
