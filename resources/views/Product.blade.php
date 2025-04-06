@@ -77,7 +77,11 @@
         <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 "> <!-- Increased padding -->
           <h2 class="text-2xl font-bold tracking-tight text-black mt-0 text-center">Product Coffee Been</h2> <!-- Added mb-6 for better spacing -->
         </div>    
+        <div class=" bg-[rgb(221,194,175)]  mr-10">
+            {{ $dt_product_not_login->links() }}
+        </div>
         <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-4">
+            
             @foreach($dt_product_not_login as $dt_product)
                 <div class="bg-[rgb(236,220,208)] w-fit group relative border border-[rgb(236,220,208)] rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                     <a href="/Login"

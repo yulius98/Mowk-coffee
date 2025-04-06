@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\tblproduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\View\View;
+
 
 class ProductShow extends Controller
 {
@@ -29,7 +32,7 @@ class ProductShow extends Controller
             )
             ->where('p.category','=', 'Coffee Been')
             ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image')
-            ->paginate(10);
+            ->paginate(1);
 
             
             

@@ -16,7 +16,7 @@
             </button>
         </div>    
     </div>
-    <div class="card-body bg-[rgb(236,222,210)]">
+    <div class="card-body">
             <table class="min-w-full divide-y divide-gray-900">
                 <thead class="bg-[rgb(136,77,38)]">
                     <tr>
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 @foreach ($data_carousel as $dt_ads )
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody class="divide-y divide-black bg-[rgb(236,222,210)]">
                         <tr>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <img src="{{ asset('storage/'. $dt_ads->image)}}" alt="Product Ads" class="w-[20%] h-auto object-cover">
@@ -55,8 +55,10 @@
         </div>
     </div>
 
+
     <!-- Tabel Produk -->
-    <div class="card-body bg-[rgb(236,222,210)]">
+    <div class="card-body">
+        
         <table class="min-w-full divide-y divide-gray-900">
             <thead class="bg-[rgb(136,77,38)]">
                 <tr>
@@ -70,7 +72,7 @@
             </thead>
             
             @foreach ( $data_biji_kopi as $dtbiji_kopi)
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody class="divide-y divide-black bg-[rgb(236,222,210)]">
                         <tr>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->nama_product}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->stock}}</td>        
@@ -91,7 +93,9 @@
                         </tr>    
                     </tbody>
             @endforeach
+            
         </table>
+        
     </div>
 </div>
 

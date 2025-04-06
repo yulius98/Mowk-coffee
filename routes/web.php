@@ -1,14 +1,22 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AuthLogin;
-use App\Http\Controllers\CarouselController;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ProductShow;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegController;
-use App\Http\Controllers\CRUIDSellerController;
-use App\Http\Controllers\ProductShow;
-use App\Http\Controllers\ShoppingCartController;
-use App\Http\Controllers\CheckoutController;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CRUIDSellerController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\ResetPasswordController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -20,7 +28,7 @@ Route::get('/About', function () {
 
 Route::get('/Login', function () {
     return view('Login');
-});
+})->name('login');
 
 Route::get('/Register', function () {
     return view('Register');
@@ -75,6 +83,15 @@ Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');
 });
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+Route::get('/reset-password/{token}', function (string $token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->middleware('guest')->name('password.reset');
+
+
 // Midtrans payment notification handler
 Route::post('/payment/notification', [CheckoutController::class, 'callback']);
 
@@ -97,3 +114,7 @@ Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']
 Route::post('/Edit_Profile/{user}',[RegController::class,'EditProfile']);
 
 Route::post('add_awb_bill/{user}',[CRUIDSellerController::class,'Add_AWB_Bill']);
+
+Route::post('/forgot-password',[ResetPasswordController::class,'forgotpassword'])->middleware('guest')->name('password.email');
+
+Route::post('/reset-password', [ResetPasswordController::class, 'resetpassword'])->middleware('guest')->name('password.update');

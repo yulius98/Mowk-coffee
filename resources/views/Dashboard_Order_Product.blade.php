@@ -7,7 +7,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-black">Products to be Shipped</h2>    
         </div>
-        <div class="card-body bg-[rgb(236,222,210)]">
+        <div class="card-body bg-transparent ">
             <table class="min-w-full divide-y divide-gray-900">
                 <thead class="bg-[rgb(136,77,38)]">
                     <tr>
@@ -53,7 +53,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-black">All Status Order</h2>    
         </div>
-        <div class="card-body bg-[rgb(236,222,210)]">
+        <div class="card-body bg-transparent">
             <table class="min-w-full divide-y divide-gray-900">
                 <thead class="bg-[rgb(136,77,38)]">
                     <tr>

@@ -19,6 +19,11 @@
                         </u1>
                     </div>
                 @endif
+                @if (session('status'))
+                    <div class="alert alert-success col-md-6 text-balck">
+                        {{ session('status') }}
+                    </div>
+                @endif 
             <div>
                 <label for="email" class="block text-sm/6 font-semibold text-gray-900">Email address</label>
                 <div class="mt-2">
@@ -30,7 +35,7 @@
                 <div class="flex items-center justify-between">
                 <label for="password" class="block text-sm/6 font-semibold text-gray-900">Password</label>
                 <div class="text-sm">
-                    <a href="#" class="font-semibold text-[#A14C36] hover:text-[#723322]">Forgot password?</a>
+                    <a href="/forgot-password" class="font-semibold text-[#A14C36] hover:text-[#723322]">Forgot password?</a>
                 </div>
                 </div>
                 <div class="mt-2">

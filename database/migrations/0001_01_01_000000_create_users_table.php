@@ -20,7 +20,14 @@ return new class extends Migration
             $table->string('alamat_pengiriman')->nullable();
             $table->string('no_HP')->nullable();
             $table->enum('role',['buyer','seller','admin']);
+            $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
