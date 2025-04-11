@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('tblpeserta_events', function (Blueprint $table) {
             $table->id();
-            $table->integer('Id_event');
+            $table->string('name_event')->unique();
             $table->string('nama_peserta');
             $table->string('alamat_peserta');
             $table->string('no_HP');
-            $table->enum('status_pembanyaran',['free','paid']);
+            $table->string('email_peserta');
+            $table->enum('status_pembanyaran',['free','pending','paid']);
             $table->timestamps();
         });
     }

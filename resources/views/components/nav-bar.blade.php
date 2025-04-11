@@ -84,6 +84,7 @@
             <a href="/" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Home</a>
             <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Been</a>
             <a href="/ProductCoffeeMachine" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
+            <a href="/Event" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Event</a>
             <a href="/About" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">About</a>
       </div>
       <div class="border-t border-gray-700 pt-4 pb-3">

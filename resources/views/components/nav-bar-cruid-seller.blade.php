@@ -11,7 +11,7 @@
           <div class="ml-10 flex items-baseline space-x-4">
             <a href="/CRUIDSeller/{{ $slot }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Dashboard Product</a>
             <a href="/Dashboard_Order_Product/{{ $slot }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Dashboard Order Product</a>  
-            <a href="/#" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Dashboard Event</a>
+            <a href="/Dashboard_Event/{{ $slot }}" class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Dashboard Event</a>
           </div> 
         </div>
         

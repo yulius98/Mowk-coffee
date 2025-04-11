@@ -1,7 +1,7 @@
 <x-layout-no-header>
   <form action="/RegisterSeller" method="post" class="space-y-6">
     @csrf
-    <div class="bg-gray-100 rounded-xl shadow-lg max-w-md mx-auto p-6">
+    <div class=" bg-transparent rounded-xl shadow-lg shadow-black max-w-md mx-auto p-6">
       <h2 class="text-2xl font-semibold text-gray-900 text-center">Register Admin/Seller</h2>
       
       <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 mt-4">

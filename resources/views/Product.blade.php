@@ -75,35 +75,35 @@
     <!-- Products Grid -->
     <div class="bg-[rgb(221,194,175)] pt-20"> <!-- Added div for search results -->
         <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 "> <!-- Increased padding -->
-          <h2 class="text-2xl font-bold tracking-tight text-black mt-0 text-center">Product Coffee Been</h2> <!-- Added mb-6 for better spacing -->
+          <h2 class=" text-4xl font-bold tracking-tight text-black mt-0 text-center">Product Coffee Been</h2> <!-- Added mb-6 for better spacing -->
         </div>    
-        <div class=" bg-[rgb(221,194,175)]  mr-10">
-            {{ $dt_product_not_login->links() }}
-        </div>
-        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-4">
-            
+        
+        {{ $dt_product_not_login->links() }}
+        
+        <div class=" grid grid-cols-1 gap-x-4 gap-y-8 sm:mt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3  ">     
             @foreach($dt_product_not_login as $dt_product)
-                <div class="bg-[rgb(236,220,208)] w-fit group relative border border-[rgb(236,220,208)] rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                <div class=" p-2 bg-[rgb(236,220,208)] group relative border border-[rgb(236,220,208)] rounded-2xl shadow-lg shadow-black overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                     <a href="/Login"
-                        class="relative block text-center bg-transparent text-white px-3 py-1 rounded-xl hover:bg-[rgb(236,220,208)] transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        class="relative block text-center bg-transparent text-white px-3 py-1 rounded-2xl hover:bg-[rgb(236,220,208)] transform transition duration-300 hover:scale-95 hover:shadow-xl">
                         <div
                             class="absolute right-4 text-white text-xs font-bold px-3 py-1 rounded-full 
                             {{ $dt_product->stock > 0 ? 'bg-[#754014]' : 'bg-[#331C09]' }}">
                             {{ $dt_product->stock > 0 ? 'Stok Tersedia' : 'Stok Habis' }}
                         </div>
-                        <img src="{{ asset('storage/'. $dt_product->image)}}" class="size-auto rounded-md bg-[rgb(240,180,140)] object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                        <img src="{{ asset('storage/'. $dt_product->image)}}" class=" w-fit rounded-2xl bg-[rgb(240,180,140)] object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
                         @if($dt_product->stock == 0)
-                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-md">
-                                <span class="text-white text-2xl font-bold transform -rotate-45">Empty Stock</span>
+                            <div class=" absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-md">
+                                <span class=" text-white text-2xl font-bold transform rotate-0 sm:-rotate-45">Empty Stock</span>
                             </div>
                         @endif
                     </a>   
                     <div class="mt-4 flex justify-between">
                         <div>
-                            <h3 class="text-lg font-bold font-sans text-black line-clamp-2 ml-2 uppercase">{{ $dt_product->nama_product }}</h3>
-                            <h4 class="text-sm font-thin font-serif text-black line-clamp-2 ml-2 ">Stock : {{ $dt_product->stock }}</h4> 
+                            <h3 class="text-lg font-bold font-sans text-black line-clamp-2 uppercase">{{ $dt_product->nama_product }}</h3>
+                            <h4 class=" text-base font-medium text-black ">Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</h4>
+                            <h5 class="text-sm font-thin font-serif text-black line-clamp-2 ">Stock : {{ $dt_product->stock }}</h5> 
                         </div>
-                        <p class=" text-base font-medium text-black mr-2">Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</p>
+                       
                     </div>
                 </div>
             @endforeach

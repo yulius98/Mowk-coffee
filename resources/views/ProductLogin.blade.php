@@ -1,17 +1,146 @@
 <x-layout-login>   
 <x-nav-bar-login :pendingCount="$count_shopping_cart" :title="$title" :user="$user" />
-<div>
+{{-- <div>
     <body>
         <a class="rounded-md px-3 py-2 text-sm font-medium text-[rgb(240,180,140)]">{{ $user }}</a>
     </body>
 </div>
-<div id="product-list" class="grid grid-cols-1 sm:grid-cols-4 sd:grid-cols-4 lg:grid-cols-16 gap-4 ml-8 mr-8 mt-10 rounded-2xl">
+<input type="hidden" id="user" value="{{ $user }}"> --}}
+    <section id="hero" class="mt-16 bg-[rgb(221,194,175)] p-4">
+        <div id="heroCarousel" class="relative w-full rounded-3xl shadow-2xl shadow-black overflow-hidden">
+            <!-- Carousel Indicators -->
+            <div class="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 space-x-2">
+                @foreach ($Carousel as $key => $Ads)
+                    <button type="button" 
+                        class="h-2 w-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors duration-200"
+                        data-carousel-indicator="{{ $key }}"
+                        aria-label="Slide {{ $key + 1 }}">
+                    </button>
+                @endforeach
+            </div>
+
+            <div class="flex  transition-transform duration-500 ease-in-out" id="carouselItems">
+                @foreach ($Carousel as $key => $Ads)
+                    <div class="min-w-full relative" data-carousel-item="{{ $key }}">
+                        <img src="{{ asset('storage/'. $Ads->image) }}" 
+                            class="w-full h-96 md:h-[500px] object-cover" 
+                            alt="Slide {{ $key + 1 }}">
+                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Previous Control -->
+            <button class="absolute left-0 top-1/2 -translate-y-1/2 p-4 bg-black bg-opacity-30 hover:bg-opacity-50 transition-colors duration-200" 
+                    type="button" 
+                    data-carousel-prev id="prevButton">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                <span class="sr-only">Previous</span>
+            </button>
+
+            <!-- Next Control -->
+            <button class="absolute right-0 top-1/2 -translate-y-1/2 p-4 bg-black bg-opacity-30 hover:bg-opacity-50 transition-colors duration-200" 
+                    type="button" 
+                    data-carousel-next id="nextButton">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <script>
+        const carouselItems = document.getElementById('carouselItems');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const totalItems = carouselItems.children.length;
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carouselItems.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    </script>
+
+
+<!-- <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 "> --> 
+    <div class="bg-[rgb(221,194,175)] pt-20">
+        <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">   
+            <h2 class="text-4xl font-bold tracking-tight text-black text-center">Product Mowks Coffee </h2> <!-- Added mb-6 for better spacing -->
+        </div>
+
+    <!-- Product list -->
+        {{ $product->links() }}
+        @foreach($product as $dataproduct)
+            <form id="product" class="space-y-6" action="/addshoppingcart" method="post" enctype="multipart/form-data">
+                @csrf
+            <div class="container mx-auto px-4 py-8 mt-4">
+                <div class=" bg-transparent rounded-2xl shadow-black shadow-2xl overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8">
+                        <!-- Product Image Section -->
+                        <div class="rounded-2xl overflow-hidden bg-transparent shadow-2xl border border-slate-400 ">
+                            <div class="flex justify-center items-center p-4">
+                                <img src="{{ asset('storage/'. $dataproduct->image)}}" 
+                                    alt="" class="rounded-2xl w-[70%] h-auto max-w-lg object-contain transform transition" >
+                            </div>
+                        </div>
+
+                        <!-- Details Product -->
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-thin font-serif text-gray-800 line-clamp-2 mb-0 uppercase">{{ $dataproduct->nama_product }}</h3>
+                            <h4 class="text-sm font-thin font-serif text-gray-800 line-clamp-2 mb-0">Stock : {{ $dataproduct->stock }}</h4> 
+                            <h5 class="text-[rgb(45,120,137)] font-bold text-lg mb-0">Rp {{ number_format((float)$dataproduct->price, 0, ',', '.') }}</h5>
+                        
+                            <!-- data parameter yang akan dikirimkan ke controller -->
+                            <input type="hidden" id="nama_pembeli" name="nama_pembeli" value="{{ $user }}">
+                            <input type="hidden" id="nama_product" name="nama_product" value="{{ $dataproduct->nama_product }}">
+                            <input type="hidden" id="jumlah_product" name="jumlah_product" value="1">
+                            <input type="hidden" id="total_price" name="total_price" value="{{ $dataproduct->price }}">
+                        
+                            <div class="flex items-center mt-2">
+                                <label for="quantity" class="text-sm font-thin font-serif text-gray-800 line-clamp-2 mb-0">Quantity</label>
+                                <button type="button" class="decrease bg-gray-300 px-2 py-1 rounded-l mx-4">-</button>
+                                <span id="quantity" class="mx-0">1</span>
+                                <button type="button" class="increase bg-gray-300 px-2 py-1 rounded-r mx-4" data-stock="{{ $dataproduct->stock }}">+</button>
+                            </div>
+            
+                            <h6 id="total-price" class="text-[rgb(45,120,137)] font-bold text-lg mb-0">Total Price: Rp {{ number_format((float)$dataproduct->price, 0, ',', '.') }}</h6>
+                            <h7 class="text-sm font-thin font-serif text-gray-800 line-clamp-2 mb-0">{{ Str::limit($dataproduct->description,50)}}</h7>
+                            <a href="#" data-product-id="{{ $loop->index }}" onclick="showModal(event, {{ $loop->index }}, '{{ $dataproduct->nama_product }}', '{{ $dataproduct->description }}')" class="text-sm font-thin font-serif text-gray-800 line-clamp-2 mb-0 transition duration-300 ease-in-out transform hover:-translate-y-0.5">...detail</a>
+
+                            <button type="submit" class="block text-center bg-[rgb(119,72,33)] text-white px-3 py-1 rounded-lg hover:bg-[rgb(155,120,91)] transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        @endforeach
+    </div>
+</div>
+</x-layout-login>
+{{-- <div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:mt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3  ">
+<!--<div id="product-list" class="grid grid-cols-1 sm:grid-cols-3 sd:grid-cols-4 lg:grid-cols-16 gap-4 ml-8 mr-8 mt-10 rounded-2xl"> -->
     @foreach($product as $dataproduct)
     <form id="product" class="space-y-6" action="/addshoppingcart" method="post" enctype="multipart/form-data">
         @csrf
         <div class="group relative w-fit bg-[rgb(236,222,210)] rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
             <div class="group relative">
-                <img src="{{ asset('storage/'. $dataproduct->image)}}" alt="Produk Image" class="size-auto rounded-md object-cover object-center rounded-t-xl bg-[rgb(240,180,140)] group-hover:opacity-75">
+                <img src="{{ asset('storage/'. $dataproduct->image)}}" alt="Produk Image" class=" w-fit rounded-2xl object-cover object-center rounded-t-xl bg-[rgb(240,180,140)] group-hover:opacity-75">
             </div>
             <div class="p-2">
                 <h3 class="text-lg font-thin font-serif text-gray-800 line-clamp-2 mb-0 uppercase">{{ $dataproduct->nama_product }}</h3>
@@ -42,7 +171,7 @@
         </div>
     </form>
     @endforeach
-</div>
+</div> --}}
 
 <script>
     document.querySelectorAll('.increase').forEach(button => {
@@ -176,4 +305,4 @@
         }
     });
 </script>
-</x-layout-login>
+

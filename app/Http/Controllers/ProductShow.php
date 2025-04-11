@@ -32,7 +32,7 @@ class ProductShow extends Controller
             )
             ->where('p.category','=', 'Coffee Been')
             ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image')
-            ->paginate(1);
+            ->simplePaginate(6);
 
             
             
@@ -60,7 +60,7 @@ class ProductShow extends Controller
             )
             ->where('p.category','=', 'Machine Coffee')
             ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image')
-            ->paginate(10);
+            ->simplePaginate(6);
 
             return view('ProductMachineCoffee',['title'=>'Machine Coffee'], compact('Carousel','dt_product_not_login'));
     }

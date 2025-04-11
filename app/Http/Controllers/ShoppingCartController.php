@@ -51,23 +51,20 @@ class ShoppingCartController extends Controller
         $add_data_transaksi->save();
 
 
-
-        $data_biji_kopi = DB::table('tblproducts as p')
+        $data_all_product = DB::table('tblproducts as p')
                             ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
                             ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.description')
-                            ->groupBy('p.id','p.nama_product','p.price','p.description', 'p.image')
-                            ->paginate(10);
+                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->simplePaginate(6); 
 
         $data_transaksi = DB::table('tbltransaksis')
                             ->where('nama_pembeli', $request->nama_pembeli)
                             ->where('status_transaksi', 'pending')
                             ->count();
 
+        $carousel = DB::table('carousels')->get();
         
-        
-
-        
-        return view('ProductLogin', ['title' => 'Welcome '.$request->nama_pembeli, 'user' => $request->nama_pembeli,'product' => $data_biji_kopi,'count_shopping_cart' => $data_transaksi]);    
+        return view('ProductLogin', ['title' => 'Welcome '.$data_user->name, 'count_shopping_cart' => $data_transaksi, 'user' => $data_user->name,'product' => $data_all_product,'Carousel' => $carousel]);    
      }
 
 

@@ -2,8 +2,8 @@
 <x-layout-no-header>
   <form action="/Register" method="post" class="space-y-6" enctype="multipart/form-data">
     @csrf
-    <div class="min-h-screen flex items-center justify-center bg-[rgb(221,194,175)] p-6">
-      <div class="bg-gray-100 rounded-xl shadow-lg max-w-md mx-auto p-6">
+    <div class="flex items-center justify-center bg-transparent ">
+      <div class=" bg-transparent rounded-xl shadow-lg shadow-black p-6 mt-10 w-full max-w-md">
         <h2 class="text-2xl font-bold text-black text-center">Register</h2>
         
         <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 mt-4">

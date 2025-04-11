@@ -16,6 +16,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CRUIDSellerController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\EventController;
 
 
 Route::get('/', function () {
@@ -38,9 +39,7 @@ Route::get('/RegisterSeller', function () {
     return view('RegisterSeller');
 });
 
-Route::get('/Event', function () {
-    return view('Event');
-});
+Route::get('/Event',[EventController::class,'ShowEvent'])->name('Event');
 
 Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
 
@@ -74,9 +73,21 @@ Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
 
 Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
 
+Route::get('/Dashboard_Event/{user}',[CRUIDSellerController::class,'Show_Event'])->name('dashboard_event');
+
 Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
 
+Route::get('/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
+
+Route::get('/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
+
 Route::get('ProductLogin/{name}', [ProductShow::class, 'ProductShowLogin']);
+
+Route::get('/delete_even/{id}/{user}',[CRUIDSellerController::class,'Delete_Event']);
+
+Route::get('/Detail_Event/{id}',[EventController::class,'Detail_Event']);
+
+Route::get('/Joint_Event/{id}',[EventController::class,'Joint_Event']);
 
 // Payment success page
 Route::get('/payment-success', function () {
@@ -118,3 +129,9 @@ Route::post('add_awb_bill/{user}',[CRUIDSellerController::class,'Add_AWB_Bill'])
 Route::post('/forgot-password',[ResetPasswordController::class,'forgotpassword'])->middleware('guest')->name('password.email');
 
 Route::post('/reset-password', [ResetPasswordController::class, 'resetpassword'])->middleware('guest')->name('password.update');
+
+Route::post('/add_event/{user}',[CRUIDSellerController::class,'Save_Add_Event']);
+
+Route::post('/edit_event/{user}',[CRUIDSellerController::class,'Save_Edit_Event']);
+
+Route::post('Joint_Event',[EventController::class,'Save_Joint_Event']);

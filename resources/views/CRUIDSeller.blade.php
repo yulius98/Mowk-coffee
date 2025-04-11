@@ -16,6 +16,7 @@
             </button>
         </div>    
     </div>
+    {{ $data_carousel->links() }}    
     <div class="card-body">
             <table class="min-w-full divide-y divide-gray-900">
                 <thead class="bg-[rgb(136,77,38)]">
@@ -54,8 +55,8 @@
             </button>
         </div>
     </div>
-
-
+    
+    {{ $data_biji_kopi->links() }}
     <!-- Tabel Produk -->
     <div class="card-body">
         
@@ -79,7 +80,7 @@
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtbiji_kopi->price,0,',','.')}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{ Str::limit($dtbiji_kopi->description, 50, '...') }}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">
-                                <img src="{{ asset('storage/'. $dtbiji_kopi->image)}}" alt="Product Image" class="w-[20%] h-auto object-cover">
+                                <img src="{{ asset('storage/'. $dtbiji_kopi->image)}}" alt="Product Image" class=" w-[20%] h-auto object-cover">
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
@@ -114,6 +115,7 @@
         </div>
     </div>
 
+    {{ $data_mesin_kopi->links() }}
     <!-- Tabel Produk -->
     <div class="card-body bg-[rgb(236,222,210)]">
         <table class="min-w-full divide-y divide-gray-900">

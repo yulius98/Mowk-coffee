@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tblevents', function (Blueprint $table) {
             $table->id();
             $table->date('date_event');
-            $table->string('name_event');
-            $table->enum('tiket',['free','no free']);
+            $table->time('time_event');
+            $table->string('name_event')->unique();
+            $table->enum('tiket',['free','paid']);
             $table->decimal('harga_tiket',10,2)->nullable();
             $table->string('description_event');
             $table->string('location_event');
