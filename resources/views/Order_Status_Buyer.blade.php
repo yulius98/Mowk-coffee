@@ -27,70 +27,63 @@
             <h2 class="text-xl font-semibold text-gray-900">Order Status</h2>
         </div>
         
-        <ul role="list" class="space-y-4 p-4">
-            @foreach ($dttransaksi as $transaksi)
-            <li class="p-6 hover:bg-[rgb(240,219,205)] transition duration-150 ease-in-out bg-[rgb(240,219,205)] rounded-xl shadow-lg border border-[rgb(200,160,120)]"> 
-                <div class="flex items-center space-x-6">
-                    
-                    <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg border border-[rgb(200,160,120)] shadow-sm">
-                        <img src="{{ asset('storage/'. $transaksi->image)}}" 
-                             alt="{{ $transaksi->nama_product }}" 
-                             class="size-fit object-cover object-center">
-                    </div>
-                    
-                    <div class="flex-1 flex flex-col">
-                        <div class="flex justify-between items-start">
-                            <h4 class="text-lg font-semibold text-gray-900">{{ $transaksi->nama_product }}</h4>
-                            @if ($transaksi->status_transaksi == 'paid')
-                                <h5 class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-red-600">Order is being packed</h5>
-                            @elseif ($transaksi->status_transaksi == 'send')
-                                <h5 class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-black">AWB Bill No : {{ $transaksi->AWB_Bill }}</h5>
-                            @endif
-
-                            <p class="text-lg font-medium text-gray-900">
-                                Rp {{ number_format((float)$transaksi->total_price, 0, ',', '.') }}
-                            </p>
+        {{ $dttransaksi->links() }}
+        @foreach ($dttransaksi as $transaksi)
+            <div class="container mx-auto px-4 py-8 mt-4"> 
+                <div class=" bg-transparent rounded-2xl shadow-black shadow-2xl overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8">
+                        <!-- Product Image Section -->
+                        <div class="rounded-2xl overflow-hidden bg-transparent shadow-2xl border border-slate-400 ">
+                            <div class="flex justify-center items-center p-4">
+                                <img src="{{ asset('storage/'. $transaksi->image)}}" 
+                                    alt="" 
+                                    class="w-fit rounded-2xl bg-[rgb(240,180,140)] object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                            </div>
                         </div>
                         
-                        <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ Str::limit($transaksi->description,100) }}</p>
-                        
-                        <div class="mt-4 flex items-center justify-between">
+                        <!-- Details Product -->
+                        <div class="space-y-2">
+                            <h4 class="text-lg font-bold text-black">{{ $transaksi->nama_product }}</h4>
+                            <p class="text-lg font-semibold text-black">
+                                Rp {{ number_format((float)$transaksi->total_price, 0, ',', '.') }}
+                            </p>
+                            <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ Str::limit($transaksi->description,100) }}
+                            </p>
+                                
                             <div class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20">
-                                <span class="text-sm font-medium text-gray-800">Qty: {{ $transaksi->jumlah_product }}</span>
+                                <span class="text-lg font-semibold text-black">Qty: {{ $transaksi->jumlah_product }}</span>
                             </div>
-                            <div>
-                                @if ($transaksi->status_transaksi == 'paid') 
-                                    <span class=" text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</span>
+                            
+                            <div class=" p-2 border-t border-[rgb(200,160,120)] bg-[rgb(236,213,200)] rounded-xl shadow-sm shadow-black">
+                                
+                                @if ($transaksi->status_transaksi == 'paid')
+                                    <h5 class="mt-2 mr-2 inline-flex items-center rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-red-600 p-2">Order is being packed</h5>
                                 @elseif ($transaksi->status_transaksi == 'send')
-                                    <span class=" text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</span>
+                                    <h5 class="mt-2 mr-2 inline-flex items-center rounded-full bg-[rgb(200,160,120)] bg-opacity-20 text-sm font-bold text-black p-2">AWB Bill No : {{ $transaksi->AWB_Bill }}</h5>
                                 @endif
-                            </div>
-                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-[rgb(200,160,120)] bg-opacity-20">
-                                <span class="text-sm font-medium text-gray-800">
+
+                                <h6 class=" mt-2 text-base font-bold text-gray-900">Order ID :{{ $transaksi->order_id }}</h6>
+                                <span class="block text-right text-sm font-bold text-black">
                                     Order Status: 
                                     <span class="{{ strtoupper($transaksi->status_transaksi) == 'PENDING' ? 'text-red-600' : 'text-black' }}">
                                         {{ strtoupper($transaksi->status_transaksi) }}
                                     </span>
                                 </span>
+                                
                             </div>
-                            
                         </div>
                     </div>
                 </div>
-            </li>
-            @endforeach
-        </ul>
+            </div>
+        @endforeach
+        
     </div>
     <div class="border-t border-[rgb(200,160,120)] bg-[rgb(248,235,227)]">
             <div class="px-6 py-6">
-                
-                
                 <div class="space-y-4">
-                    
-                    
                     <div class="flex justify-center items-center space-x-2 text-sm">
                         <span class="text-gray-600">or</span>
-                        <a href="/ProductLogin/{{ $user->name }}" 
+                        <a href="/ProductLogin/{{ $user->name }}/Coffee Been" 
                                 class="font-medium text-[rgb(200,160,120)] hover:text-[rgb(180,140,100)] transition duration-150 ease-in-out">
                             Continue Shopping
                             <span aria-hidden="true"> →</span>

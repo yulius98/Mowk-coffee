@@ -81,7 +81,7 @@
                     
                     <div class="flex justify-center items-center space-x-2 text-sm">
                         <span class="text-gray-600">or</span>
-                        <a href="/Product" 
+                        <a href="/ProductLogin/{{ $user->name }}" 
                                 class="font-medium text-[rgb(200,160,120)] hover:text-[rgb(180,140,100)] transition duration-150 ease-in-out">
                             Continue Shopping
                             <span aria-hidden="true"> →</span>

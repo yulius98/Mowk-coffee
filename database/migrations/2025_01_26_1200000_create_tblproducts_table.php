@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('tblproducts', function (Blueprint $table) {
             $table->id();
             $table->string('nama_product') -> unique();
+            $table->string('category');
             $table->string('image') -> nullable();
             $table->string('description')->nullable();
+            $table->enum('discount', ['yes', 'no'])->default('no');
+            $table->decimal('discount_price',50,2)->nullable();
             $table->decimal('price',50,2);
-            $table->string('category');
             $table->timestamps();
         });
     }

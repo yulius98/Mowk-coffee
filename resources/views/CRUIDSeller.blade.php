@@ -33,7 +33,8 @@
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='#'" >Edit</button>
+                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel/{{ $user }}/{{ $dt_ads->id }}'" >Edit</button>
+                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel_delete/{{ $user }}/{{ $dt_ads->id }}'" >Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -66,6 +67,8 @@
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Product Name</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Stock</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Price</th>
+                    <th class="border border-gray-900 px-4 py-2 font-medium text-white">Discount</th>
+                    <th class="border border-gray-900 px-4 py-2 font-medium text-white">Discount Price</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Description</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Product Image</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Action</th>
@@ -76,18 +79,23 @@
                     <tbody class="divide-y divide-black bg-[rgb(236,222,210)]">
                         <tr>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->nama_product}}</td>
-                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->stock}}</td>        
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->stock}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtbiji_kopi->price,0,',','.')}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtbiji_kopi->discount}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtbiji_kopi->discount_price,0,',','.')}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{ Str::limit($dtbiji_kopi->description, 50, '...') }}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">
-                                <img src="{{ asset('storage/'. $dtbiji_kopi->image)}}" alt="Product Image" class=" w-[20%] h-auto object-cover">
+                                <img src="{{ asset('storage/'. $dtbiji_kopi->image)}}" alt="Product Image" class=" w-[40%] h-[40%] object-cover">
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/add_stock/{{$dtbiji_kopi->id}}/{{ $user }}'" >Add Stock</button>
+                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-xs font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/add_stock/{{$dtbiji_kopi->id}}/{{ $user }}'" >Add Stock</button>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/edit_produk/{{$dtbiji_kopi->id}}/{{ $user }}'" >Edit</button>
+                                </div>    
+                                <div class="d-flex justify-content-between mb-3">    
+                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='#'" >Delete</button>
                                 </div>
                             </td>
                             
@@ -124,6 +132,8 @@
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Product Name</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Stock</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Price</th>
+                    <th class="border border-gray-900 px-4 py-2 font-medium text-white">Discount</th>
+                    <th class="border border-gray-900 px-4 py-2 font-medium text-white">Discount Price</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Description</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Product Image</th>
                     <th class="border border-gray-900 px-4 py-2 font-medium text-white">Action</th>
@@ -136,9 +146,11 @@
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->nama_product}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->stock}}</td>        
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtmesin_kopi->price,0,',','.')}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dtmesin_kopi->discount}}</td>
+                            <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">Rp {{number_format((float)$dtmesin_kopi->discount_price,0,',','.')}}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{ Str::limit($dtmesin_kopi->description,50, '...') }}</td>
                             <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">
-                                <img src="{{ asset('storage/'. $dtmesin_kopi->image)}}" alt="Product Image" class="w-[20%] h-auto object-cover">
+                                <img src="{{ asset('storage/'. $dtmesin_kopi->image)}}" alt="Product Image" class="w-[40%] h-[40%] object-cover">
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
@@ -146,6 +158,9 @@
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
                                     <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/edit_produk/{{$dtmesin_kopi->id}}/{{ $user }}'" >Edit</button>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='#'" >Delete</button>
                                 </div>
                             </td>
                             

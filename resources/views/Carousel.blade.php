@@ -2,7 +2,7 @@
 <x-slot:title>{{ $title }}</x-slot:title>
         <div class="mt-3">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Promo Ads</h3>
-            <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
+            <div class="bg-[rgb(240,222,209)] rounded-xl shadow-lg overflow-hidden transform p-6 max-w-md">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -16,25 +16,45 @@
                     @csrf
                     <input type="hidden" id="Id">
                     
-                    
                     <div class="col-span-full">
-                        <label for="image" class="block text-sm font-bold text-black">Promo Ads Image</label>
-                        <div class="mb-3">
-                            <input class="form-control" type="file" id="image" name="image">
-                            <input type="hidden" id="nama_seller" name="nama_seller" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2" value="{{ $nama_seller }}">
+                        <label for="image" class="block text-sm font-semibold text-gray-700 mb-2">
+                          Promo Ads Image
+                        </label>
+                        <div class="space-y-4">
+                          <input 
+                            type="file" 
+                            id="image" 
+                            name="image"
+                            class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                          >
+                          
+                          <input 
+                            type="hidden" 
+                            id="nama_seller" 
+                            name="nama_seller" 
+                            value="{{ $nama_seller }}"
+                            class="hidden"
+                          >
                         </div>
-                    </div>
-                    <div class="flex justify-end space-x-3 mt-5">
-                        <button type="button" 
-                                class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600" onclick="window.location.href='/CRUIDSeller'">
-                            Cancel
+                      </div>
+                      
+                      <div class="flex justify-end space-x-3 mt-6">
+                        <button 
+                          type="button" 
+                          onclick="window.location.href='/CRUIDSeller'" 
+                          class="px-4 py-2 rounded-md text-sm font-medium bg-gray-500 text-white hover:bg-gray-600 transition-colors duration-200"
+                        >
+                          Cancel
                         </button>
                         
-                        <button type="submit" 
-                                class="rounded-md bg-[#A14C36] px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#723322]">
-                                Save
+                        <button 
+                          type="submit" 
+                          class="px-4 py-2 rounded-md text-sm font-semibold bg-[#A14C36] text-white hover:bg-[#723322] shadow-md transition-colors duration-200"
+                        >
+                          Save
                         </button>
-                    </div>
+                      </div>
+                      
                 </form>
             </div>
         </div>

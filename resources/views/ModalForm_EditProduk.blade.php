@@ -20,6 +20,7 @@
                         <div>
                             <label class="block text-sm font-bold text-black">Product Name</label>
                             <label class="block text-sm font-normal text-black">{{ $edit_produk->nama_product }}</label>
+                            <img src="{{ asset('storage/' . $edit_produk->image) }}" alt="Product Image" class="mt-2 mb-4 w-[40%] h-[40%] object-cover">
                             <input type="hidden" id="nama_product" name="nama_product" value="{{ $edit_produk->nama_product }}"  
                                 class="mt-1 block w-full rounded-md border-[rgb(236,222,210)] shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         </div>
@@ -31,6 +32,28 @@
                         </div>
 
                         <div>
+                            <label class="block text-sm font-bold text-black">Discount</label>
+                            <div class="flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" id="discount" name="discount" value="yes"
+                                        class="text-blue-500 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-black">Discount</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" id="no_discount" name="discount" value="no" required
+                                        class="text-blue-500 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-black">No Discount</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-black">Discount Price</label>
+                            <input type="number" id="discount_price" name="discount_price"  
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                        </div>
+
+                        <div>
                             <label class="block text-sm font-bold text-black">Deskripsi</label>
                             <textarea id="description" name="description" required 
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">{{ $edit_produk->description }}</textarea>
@@ -39,7 +62,7 @@
                         
 
                         <div class="col-span-full">
-                            <label for="image" class="block text-sm font-bold text-black">Product Image</label>
+                            <label for="image" class="block text-sm font-bold text-black">Change Image</label>
                             <div class="mb-3">
                                 <input class="form-control" type="file" id="image" name="image">
                             </div>

@@ -63,6 +63,10 @@ Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout
 
 Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
 
+Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);
+
+Route::get('/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/Edit_Profile/{user}', [RegController::class, 'Show_Edit_Profile']);
@@ -81,7 +85,7 @@ Route::get('/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
 
 Route::get('/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
 
-Route::get('ProductLogin/{name}', [ProductShow::class, 'ProductShowLogin']);
+Route::get('ProductLogin/{name}/{category}', [ProductShow::class, 'ProductShowLogin']);
 
 Route::get('/delete_even/{id}/{user}',[CRUIDSellerController::class,'Delete_Event']);
 
@@ -115,6 +119,8 @@ Route::post('/Login',[AuthLogin::class,'AuthUser']);
 Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']);
 
 Route::post('/Carousel',[CarouselController::class,'AddAds']);
+
+Route::post('/Carousel_Edit/{seller}',[CarouselController::class,'UpdateAds']);
 
 Route::post('/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
 

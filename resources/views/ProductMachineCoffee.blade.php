@@ -94,13 +94,28 @@
                             <span class=" text-white text-2xl font-bold transform rotate-0 sm:-rotate-45">Empty Stock</span>
                         </div>
                         @endif
+                        @if($dt_product->discount == "yes")
+                            <div class=" absolute inset-0 flex items-center justify-center bg-transparent rounded-md">
+                                <span class=" text-green-500 text-7xl font-bold transform rotate-0 sm:-rotate-45">Discount</span>
+                            </div>
+                        @endif
+
                     </a>   
                     <div class="mt-4 flex justify-between">
                         <div>
-                            <h3 class="text-base font-bold font-sans text-black line-clamp-2 ml-2 uppercase">{{ $dt_product->nama_product }}</h3>
-                            <h4 class="text-sm font-thin font-serif text-black line-clamp-2 ml-2">Stock : {{ $dt_product->stock }}</h4> 
+                            <h3 class="text-lg font-bold font-sans text-black line-clamp-2 uppercase">{{ $dt_product->nama_product }}</h3>
+                            @if ($dt_product->discount == "yes")
+                                <div class="flex items-center gap-8">
+                                    <h4 class="text-base font-bold  text-green-500 line-through"><del>Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</del></h4>
+                                    <h5 class=" text-lg font-bold text-black">Rp {{ number_format((float)$dt_product->discount_price, 0, ',', '.') }}</h5>
+                                </div>
+                            @else
+                                <h4 class="text-base font-medium text-black">Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</h4>    
+                            @endif
+                            
+                            <h6 class="text-sm font-thin font-serif text-black line-clamp-2 ">Stock : {{ $dt_product->stock }}</h6> 
                         </div>
-                        <p class=" text-base font-medium text-black mr-2">Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</p>
+                       
                     </div>
                 </div>
             @endforeach    
