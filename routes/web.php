@@ -49,6 +49,8 @@ Route::get('/Logout',[AuthLogin::class,'Logout']);
 
 Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
 
+Route::get('/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
+
 Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
@@ -65,7 +67,7 @@ Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
 
 Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);
 
-Route::get('/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
+Route::match(['get','post'],'/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 

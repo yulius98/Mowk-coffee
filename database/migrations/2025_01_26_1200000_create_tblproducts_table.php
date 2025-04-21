@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('discount', ['yes', 'no'])->default('no');
             $table->decimal('discount_price',50,2)->nullable();
             $table->decimal('price',50,2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tblproducts');
+        Schema::table('tblproducts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+            });          
     }
 };

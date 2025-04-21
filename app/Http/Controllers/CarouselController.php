@@ -91,15 +91,37 @@ class CarouselController extends Controller
     }
 
     public function DeleteAds($seller,$id) {
-        $delete_Ads = Carousel::find($id);
+        
+
+        $delete_Ads = DB::table('carousels')
+                    ->where('id', $id)
+                    ->first();
         //dd($delete_Ads);
         $file = storage_path('app/public/'. $delete_Ads->image);
-        
+        //dd($file);
         if (file_exists($file)) {
             unlink($file);
         } 
 
-        $delete_Ads->delete();
-        return redirect()->back();
+        DB::table('carousels')
+            ->where('id', $id)
+            ->delete();
+        
+            $data_carousel = DB::table('carousels')->simplePaginate(3);
+            $data_biji_kopi = DB::table('tblproducts as p')
+                                ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                                ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
+                                ->where('p.category','=','Coffee Been')
+                                ->groupBy('p.id','p.nama_product', 'p.price', 'p.image')
+                                ->simplePaginate(3);
+    
+            $data_mesin_kopi = DB::table('tblproducts as p')
+                                ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
+                                ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
+                                ->where('p.category','=','Machine Coffee')
+                                ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                                ->simplePaginate(3);
+    
+            return view('CRUIDSeller', ['title' => $seller, 'user' => $seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
     }
 }
