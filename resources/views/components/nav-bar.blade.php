@@ -83,7 +83,7 @@
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <a href="/" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Home</a>
             <a href="/Product" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Been</a>
-            <a href="/ProductCoffeeMachine" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
+            <a href="/ProductMachineCoffee" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Product Coffee Machine</a>
             <a href="/Event" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">Event</a>
             <a href="/About" class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-[#522E0E] hover:text-white">About</a>
       </div>

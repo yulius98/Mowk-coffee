@@ -121,14 +121,14 @@ class ProductShow extends Controller
                             ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
                             ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.discount','p.discount_price','p.description')
                             ->where('p.category','=', 'Coffee Been')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
                             ->simplePaginate(6);
         }else if($category == 'Machine Coffee'){
             $data_all_product = DB::table('tblproducts as p')
                             ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
                             ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.discount','p.discount_price','p.description')
                             ->where('p.category','=', 'Machine Coffee')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image')
+                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
                             ->simplePaginate(6);
         }
                             
