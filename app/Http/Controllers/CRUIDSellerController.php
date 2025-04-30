@@ -7,6 +7,8 @@ use App\Models\tblpembelian;
 use App\Models\tblstock_log;
 use App\Models\tbltransaksi;
 use App\Models\Carousel;
+use App\Models\tblevent;
+use App\Models\tblpesertaEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -318,6 +320,27 @@ class CRUIDSellerController extends Controller
         $data_carousel = DB::table('carousels')->simplePaginate(3);
 
         return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
+    }
+
+    public function Show_Event($user){
+        
+        $data_event = tblevent::orderByDesc('id')->get();
+        $data_peserta_event = tblpesertaEvent::orderByDesc('name_event')
+                            ->orderByDesc('nama_peserta')
+                            ->get();
+        
+        
+        return view ('Dashboard_Event',['title' => $user,'data_event' => $data_event,'data_peserta_event' => $data_peserta_event]);
+    }
+    public function Add_Event($user){
+        return view ('ModalForm_AddEvent',['title' => $user]);
+    }
+    public function Edit_Event($id,$user){
+        $edit_event = DB::table('tblevent')
+                    ->where('id', $id)
+                    ->first();
+        //dd($edit_event);
+        return view ('ModalForm_EditEvent',['title' => $user,'edit_event' => $edit_event]);
     }
 
 }

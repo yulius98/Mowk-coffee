@@ -47,8 +47,7 @@
 
 
     <div class="container mx-auto mt-4 px-4 py-8">
-    
-        <!-- Tabel Products to be Shipped -->    
+       
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-black">List of Events</h2>
             <div class="flex items-center gap-4">
@@ -74,7 +73,7 @@
                     </tr>
                 </thead>
                 
-                @foreach ( $data_list_event as $dt_list_event)
+                @foreach ( $data_event as $dt_list_event)
                         <tbody class="divide-y divide-gray-200">
                             <tr>
                                 <td class="border border-gray-900 px-4 py-2 font-normal text-[rgb(4,4,4)]">{{$dt_list_event->date_event}}</td>
