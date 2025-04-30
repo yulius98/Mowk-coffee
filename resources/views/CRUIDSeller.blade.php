@@ -103,7 +103,11 @@
                                     <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/edit_produk/{{$dtbiji_kopi->id}}/{{ $user }}'" >Edit</button>
                                 </div>    
                                 <div class="d-flex justify-content-between mb-3">    
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/delete_produk/{{$dtbiji_kopi->id}}/{{ $user }}'" >Delete</button>
+                                    <form action="/delete_produk/{{$dtbiji_kopi->id}}/{{ $user }}" method="POST" onsubmit="return confirm('Are you sure to delete?')" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700"  >Delete</button>
+                                    </form>
                                 </div>
                             </td>
                             
@@ -168,7 +172,11 @@
                                     <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/edit_produk/{{$dtmesin_kopi->id}}/{{ $user }}'" >Edit</button>
                                 </div>
                                 <div class="d-flex justify-content-between mb-3">
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/delete_produk/{{$dtmesin_kopi->id}}/{{ $user }}'" >Delete</button>
+                                    <form action="/delete_produk/{{$dtmesin_kopi->id}}/{{ $user }}" method="POST" onsubmit="return confirm('Are you sure to delete?')" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700">Delete</button>
+                                    </form>     
                                 </div>
                             </td>
                             

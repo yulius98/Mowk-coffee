@@ -18,27 +18,21 @@ class ProductShow extends Controller
            
             $Carousel = Carousel::all();
 
-            $dt_product_not_login = DB::table('tblproducts as p')
-            ->select(
-                'p.id',
-                'p.nama_product',
-                'p.price',
-                'p.discount',
-                'p.discount_price',
-                'p.image',
-                'p.description',
-                DB::raw('COALESCE((
-                    SELECT (COALESCE(SUM(jumlah_product_beli), 0) - COALESCE(SUM(jumlah_product_jual), 0))
-                    FROM tblstock_logs
-                    WHERE tblstock_logs.nama_product = p.nama_product
-                ), 0) as stock')
-            )
-            ->where('p.category','=', 'Coffee Been')
-            ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image','p.discount','p.discount_price')
-            ->simplePaginate(6);
-
+            $dt_product_not_login = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                ->select( 
+                                    'tblproducts.id',
+                                    'tblproducts.nama_product', 
+                                    DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),
+                                    'tblproducts.price',
+                                    'tblproducts.image',
+                                    'tblproducts.discount',
+                                    'tblproducts.discount_price',
+                                    'tblproducts.description')
+                                ->where('tblproducts.category','=', 'Coffee Been')
+                                ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                ->simplePaginate(6);
             
-            
+        
             return view('Product',['title'=>'Coffee Been'], compact('Carousel','dt_product_not_login'));
     }
 
@@ -47,25 +41,20 @@ class ProductShow extends Controller
             
             $Carousel = Carousel::all();
 
-            $dt_product_not_login = DB::table('tblproducts as p')
-            ->select(
-                'p.id',
-                'p.nama_product',
-                'p.price',
-                'p.discount',
-                'p.discount_price',
-                'p.image',
-                'p.description',
-                DB::raw('COALESCE((
-                    SELECT (COALESCE(SUM(jumlah_product_beli), 0) - COALESCE(SUM(jumlah_product_jual), 0))
-                    FROM tblstock_logs
-                    WHERE tblstock_logs.nama_product = p.nama_product
-                ), 0) as stock')
-            )
-            ->where('p.category','=', 'Machine Coffee')
-            ->groupBy('p.id', 'p.nama_product', 'p.price', 'p.description', 'p.image','p.discount','p.discount_price')
-            ->simplePaginate(6);
-
+            $dt_product_not_login = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                ->select( 
+                                    'tblproducts.id',
+                                    'tblproducts.nama_product', 
+                                    DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),
+                                    'tblproducts.price',
+                                    'tblproducts.image',
+                                    'tblproducts.discount',
+                                    'tblproducts.discount_price',
+                                    'tblproducts.description')
+                                ->where('tblproducts.category','=', 'Machine Coffee')
+                                ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                ->simplePaginate(6);
+            
             return view('ProductMachineCoffee',['title'=>'Machine Coffee'], compact('Carousel','dt_product_not_login'));
     }
 
@@ -117,19 +106,20 @@ class ProductShow extends Controller
                             ->count();
 
         if($category == 'Coffee Been'){
-            $data_all_product = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=', 'Coffee Been')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
+            $data_all_product = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                            ->select( 'tblproducts.id','tblproducts.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                            ->where('tblproducts.category','=', 'Coffee Been')
+                            ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
                             ->simplePaginate(6);
+            
         }else if($category == 'Machine Coffee'){
-            $data_all_product = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=', 'Machine Coffee')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
+            $data_all_product = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                            ->select( 'tblproducts.id','tblproducts.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                            ->where('tblproducts.category','=', 'Machine Coffee')
+                            ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
                             ->simplePaginate(6);
+            
+            
         }
                             
         $carousel = Carousel::all();

@@ -52,7 +52,7 @@ Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::cla
 //Route untuk CRUIDSellerController
 Route::get('/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
 Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
-Route::get('/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
+Route::delete('/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
 Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
 Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
 Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);

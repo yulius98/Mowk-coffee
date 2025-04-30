@@ -18,26 +18,20 @@ class CRUIDSellerController extends Controller
 {
     
     public function ShowCRUIDSeller($name_seller){
-        //dd($name_seller);
-        //$data_carousel = DB::table('carousels')->simplePaginate(3);
-        $data_carousel = Carousel::simplePaginate(3);
         
-        // Mengambil data biji dan mesin kopi dan jumlah stock biji kopi
-        $data_biji_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Coffee Been')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image','p.discount','p.discount_price','p.description')
-                            ->simplePaginate(3);
+        $data_carousel = Carousel::simplePaginate(3);
+            
+        $data_biji_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Coffee Been')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->simplePaginate(3);
+        $data_mesin_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Machine Coffee')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                 ->simplePaginate(3);
 
-        $data_mesin_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Machine Coffee')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                            ->simplePaginate(3);
         //dd($data_mesin_kopi);    
         
         return view('CRUIDSeller', ['title' => $name_seller, 'user' => $name_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
@@ -102,24 +96,18 @@ class CRUIDSellerController extends Controller
         $add_buy_stock->save();
 
         
-        $data_carousel = DB::table('carousels')->simplePaginate(3);
-        
-        // Mengambil data biji kopi dan jumlah stock biji kopi
-        $data_biji_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Coffee Been')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image','p.discount','p.discount_price','p.description')
-                            ->simplePaginate(3);
-
-        $data_mesin_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Machine Coffee')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                            ->simplePaginate(3);
+        $data_carousel = Carousel::simplePaginate(3);
+            
+        $data_biji_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Coffee Been')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->simplePaginate(3);
+        $data_mesin_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Machine Coffee')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                 ->simplePaginate(3);
                                         
         return view('CRUIDSeller', ['title' => $request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi , 'data_mesin_kopi' => $data_mesin_kopi]);
 
@@ -159,24 +147,18 @@ class CRUIDSellerController extends Controller
         $add_pembelian->jumlah_product = $request->stock;
         $add_pembelian->save();
 
-        $data_carousel = DB::table('carousels')->simplePaginate(3);
-        
-        // Mengambil data biji kopi dan jumlah stock biji kopi
-        $data_biji_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Coffee Been')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image','p.discount','p.discount_price','p.description')
-                            ->simplePaginate(3);
-
-        $data_mesin_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Machine Coffee')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                            ->simplePaginate(3);
+        $data_carousel = Carousel::simplePaginate(3);
+            
+        $data_biji_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Coffee Been')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->simplePaginate(3);
+        $data_mesin_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Machine Coffee')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                 ->simplePaginate(3);
 
         return view('CRUIDSeller', ['title' => $request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);                
     }
@@ -217,23 +199,18 @@ class CRUIDSellerController extends Controller
             ]);
 
         
-        $data_biji_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Coffee Been')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image','p.discount','p.discount_price','p.description')
-                            ->simplePaginate(3);
-
-        $data_mesin_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Machine Coffee')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                            ->simplePaginate(3);
-
-        $data_carousel = DB::table('carousels')->simplePaginate(3);
+        $data_carousel = Carousel::simplePaginate(3);
+            
+        $data_biji_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                     ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                     ->where('tblproducts.category','=','Coffee Been')
+                                     ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                     ->simplePaginate(3);
+        $data_mesin_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                     ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                     ->where('tblproducts.category','=','Machine Coffee')
+                                     ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                     ->simplePaginate(3);
 
         return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
         
@@ -288,8 +265,9 @@ class CRUIDSellerController extends Controller
     }
 
     public function Delete_Produk($id,$user){
-        // Menghapus produk berdasarkan ID
-        //dd($id);
+        
+        tblproduct::destroy($id);
+
         $product = DB::table('tblproducts')
                     ->where('id', $id)
                     ->first();
@@ -298,28 +276,23 @@ class CRUIDSellerController extends Controller
         if (file_exists($file)) {
             unlink($file);
         }
-        DB::table('tblproducts')->where('id', $id)->delete();
         
+        
+        $data_carousel = Carousel::simplePaginate(3);
+            
+        $data_biji_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Coffee Been')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->simplePaginate(3);
+        $data_mesin_kopi = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                                 ->select( 'tblproducts.id','tblproducts.nama_product','tblproducts.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                                 ->where('tblproducts.category','=','Machine Coffee')
+                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                 ->simplePaginate(3);
 
-        $data_biji_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Coffee Been')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price', 'p.image','p.discount','p.discount_price','p.description')
-                            ->simplePaginate(3);
-
-        $data_mesin_kopi = DB::table('tblproducts as p')
-                            ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                            ->select( 'p.id','p.nama_product','p.image', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.discount','p.discount_price','p.description')
-                            ->where('p.category','=','Machine Coffee')
-                            ->orderByDesc('p.updated_at')
-                            ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                            ->simplePaginate(3);
-
-        $data_carousel = DB::table('carousels')->simplePaginate(3);
-
-        return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
+        return redirect('/CRUIDSeller/'.$user)->with('success', 'Product deleted successfully!');
+                                 
     }
 
     public function Show_Event($user){
