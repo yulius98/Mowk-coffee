@@ -46,23 +46,24 @@ Route::get('/Logout',[AuthLogin::class,'Logout']);
 Route::get('/Event',[EventController::class,'ShowEvent'])->name('Event');
 
 //Route untuk ShoppingCartController
-Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
+
 Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
 
 //Route untuk CRUIDSellerController
-Route::get('/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
-Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
+
 Route::delete('/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
-Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
-Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
-Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);
 Route::delete('/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
-Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
-Route::get('/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
-Route::get('/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
 Route::get('/delete_even/{id}/{user}',[CRUIDSellerController::class,'Delete_Event']);
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
+    Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
+    Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);
+    Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
+    Route::get('/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
+    Route::get('/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
+    Route::get('/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
+    Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
     Route::get('/CRUIDSeller/{name_seller}', [CRUIDSellerController::class,'ShowCRUIDSeller']);
     Route::get('ProductLogin/{name}/{category}', [ProductShow::class, 'ProductShowLogin']);
     Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
@@ -73,13 +74,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/RegisterSeller', function () {
         return view('RegisterSeller');
     });
+    Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
+    Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
     
 });
 
 Auth::routes();
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
-Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
 Route::get('/success/{user}',[CheckoutController::class,'Success']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/Detail_Event/{id}',[EventController::class,'Detail_Event']);
@@ -99,17 +101,11 @@ Route::get('/reset-password/{token}', function (string $token) {
     })->middleware('guest')->name('password.reset');
 
 
-// Midtrans payment notification handler
+// POST Methods
 Route::post('/payment/notification', [CheckoutController::class, 'callback']);
 Route::post('/Register', [RegController::class, 'RegUser']);
 Route::post('/RegisterSeller',[RegController::class,'RegSeller']);
 Route::post('/Login',[AuthLogin::class,'AuthUser']);
-
-//Route::get('/CRUIDSeller', function () {
-    // Redirect to home or a default seller page
-//    return view('CRUIDSeller');
-//});
-
 Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']);
 Route::post('/Carousel',[CarouselController::class,'AddAds']);
 Route::post('/Carousel_Edit/{seller}',[CarouselController::class,'UpdateAds']);
@@ -123,6 +119,3 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetpassword']
 Route::post('/add_event/{user}',[CRUIDSellerController::class,'Save_Add_Event']);
 Route::post('/edit_event/{user}',[CRUIDSellerController::class,'Save_Edit_Event']);
 Route::post('Joint_Event',[EventController::class,'Save_Joint_Event']);
-
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
