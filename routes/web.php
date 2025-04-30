@@ -39,57 +39,49 @@ Route::get('/RegisterSeller', function () {
     return view('RegisterSeller');
 });
 
-Route::get('/Event',[EventController::class,'ShowEvent'])->name('Event');
-
-Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
-
-Route::match(['get','post'],'/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
-
 Route::get('/Logout',[AuthLogin::class,'Logout']);
 
-Route::match(['get','post'],'/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
+Route::get('/Event',[EventController::class,'ShowEvent'])->name('Event');
 
-Route::match(['get','post'],'/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
-
-Route::match(['get','post'],'/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
-
-Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
-
-Route::get('/ProductMachineCoffee', [ProductShow::class, 'ProductMachineCoffeeShowNotLogin']);
-
+//Route untuk ShoppingCartController
+Route::get('/ShoppingCart/{user}', [ShoppingCartController::class, 'ShowShoppingCart']);
 Route::get('/delete_shoppingcart/{id}/{name_buyer}',[ShoppingCartController::class,'DeleteShoppingCart']);
 
-Route::match(['get','post'],'/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUIDSeller']);
-
-Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
-
+//Route untuk CRUIDSellerController
+Route::get('/add_produk/{name_seller}/{category}',[CRUIDSellerController::class,'ShowAddProduct']);
+Route::get('/edit_produk/{id}/{user}',[CRUIDSellerController::class,'Edit_Produk']);
+Route::get('/delete_produk/{id}/{user}',[CRUIDSellerController::class,'Delete_Produk']);
+Route::get('/add_stock/{id}/{user}',[CRUIDSellerController::class,'Add_Stock']);
+Route::get('/CRUIDSeller/{name_seller}',[CRUIDSellerController::class,'ShowCRUIDSeller']);
 Route::get('/Carousel/{user}',[CarouselController::class,'ShowAds']);
-
 Route::get('/Carousel/{user}/{id}',[CarouselController::class,'Edit_Ads']);
+Route::delete('/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
+Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
+Route::get('/Dashboard_Event/{user}',[CRUIDSellerController::class,'Show_Event'])->name('dashboard_event');
+Route::get('/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
+Route::get('/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
+Route::get('/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
+Route::get('/delete_even/{id}/{user}',[CRUIDSellerController::class,'Delete_Event']);
 
-Route::match(['get','post'],'/Carousel_delete/{user}/{id}',[CarouselController::class,'DeleteAds']);
+
+
+//Route untuk ProductShow
+Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
+Route::get('/ProductMachineCoffee', [ProductShow::class, 'ProductMachineCoffeeShowNotLogin']);
+Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
+Route::get('ProductLogin/{name}/{category}', [ProductShow::class, 'ProductShowLogin']);
+
+
+//Route untuk Checkout
+Route::get('/Checkout/{user}/{total_price}',[CheckoutController::class,'Checkout']);
+Route::get('/success/{user}',[CheckoutController::class,'Success']);
+
+
+
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/Edit_Profile/{user}', [RegController::class, 'Show_Edit_Profile']);
-
-Route::get('/success/{user}',[CheckoutController::class,'Success']);
-
-Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
-
-Route::match(['get','post'],'/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
-
-Route::match(['get','post'],'/Dashboard_Event/{user}',[CRUIDSellerController::class,'Show_Event'])->name('dashboard_event');
-
-Route::match(['get','post'],'/shipping_product/{id}/{title}',[CRUIDSellerController::class,'Shipping_Product']);
-
-Route::match(['get','post'],'/add_event/{user}',[CRUIDSellerController::class,'Add_Event']);
-
-Route::match(['get','post'],'/edit_even/{id}/{user}',[CRUIDSellerController::class,'Edit_Event']);
-
-Route::get('ProductLogin/{name}/{category}', [ProductShow::class, 'ProductShowLogin']);
-
-Route::match(['get','post'],'/delete_even/{id}/{user}',[CRUIDSellerController::class,'Delete_Event']);
 
 Route::get('/Detail_Event/{id}',[EventController::class,'Detail_Event']);
 
@@ -123,28 +115,28 @@ Route::get('/CRUIDSeller', function () {
     return view('CRUIDSeller');
 });
 
-Route::match(['get','post'],'/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']);
+Route::post('/CRUIDSeller',[CRUIDSellerController::class,'AddProductCoffeeBeen']);
 
 Route::post('/Carousel',[CarouselController::class,'AddAds']);
 
 Route::post('/Carousel_Edit/{seller}',[CarouselController::class,'UpdateAds']);
 
-Route::match(['get','post'],'/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
+Route::post('/edit_produk/{id}/{user}', [CRUIDSellerController::class, 'UpdateProductCoffeeBeen']);
 
-Route::match(['get','post'],'/add_stock',[CRUIDSellerController::class,'Tambah_Stock']);
+Route::post('/add_stock',[CRUIDSellerController::class,'Tambah_Stock']);
 
 Route::post('/addshoppingcart',[ShoppingCartController::class,'AddShoppingCart']);
 
 Route::post('/Edit_Profile/{user}',[RegController::class,'EditProfile']);
 
-Route::match(['get','post'],'add_awb_bill/{user}',[CRUIDSellerController::class,'Add_AWB_Bill']);
+Route::post('add_awb_bill/{user}',[CRUIDSellerController::class,'Add_AWB_Bill']);
 
 Route::post('/forgot-password',[ResetPasswordController::class,'forgotpassword'])->middleware('guest')->name('password.email');
 
 Route::post('/reset-password', [ResetPasswordController::class, 'resetpassword'])->middleware('guest')->name('password.update');
 
-Route::match(['get','post'],'/add_event/{user}',[CRUIDSellerController::class,'Save_Add_Event']);
+Route::post('/add_event/{user}',[CRUIDSellerController::class,'Save_Add_Event']);
 
-Route::match(['get','post'],'/edit_event/{user}',[CRUIDSellerController::class,'Save_Edit_Event']);
+Route::post('/edit_event/{user}',[CRUIDSellerController::class,'Save_Edit_Event']);
 
 Route::post('Joint_Event',[EventController::class,'Save_Joint_Event']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -12,15 +13,12 @@ class AuthLogin extends Controller
 {
     public function AuthUser(Request $request)
     {
-    
+        
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
         
-
-        
-        $data_carousel = DB::table('carousels')->get();                
 
         if (Auth::attempt($credentials)) {
                 
@@ -46,7 +44,8 @@ class AuthLogin extends Controller
                             ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price','p.description')
                             ->simplePaginate(3);
                     
-            $data_carousel = DB::table('carousels')->simplePaginate(3);
+            
+            $data_carousel = Carousel::simplePaginate(3);
 
             $data_transaksi = DB::table('tbltransaksis')
                             ->where('nama_pembeli', $dtuser->name)
@@ -60,10 +59,12 @@ class AuthLogin extends Controller
                                 ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price','p.description')
                                 ->simplePaginate(6); 
             //dd($data_all_product);                    
-            $carousel = DB::table('carousels')->get();                    
+            $carousel = Carousel::all();                    
 
             if( $dtuser->role == "seller"){
                 // Mengirimkan objek pengguna ke view
+                //return redirect('/CRUIDSeller/'.$dtuser->name);
+                
                 return view('CRUIDSeller', ['title' => $dtuser->name, 'user' => $dtuser->name,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
             } elseif ($dtuser->role == "buyer") {
                 // Mengirimkan objek pengguna ke view  

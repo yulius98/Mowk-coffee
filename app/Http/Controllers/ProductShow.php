@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\tblproduct;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -14,8 +15,8 @@ class ProductShow extends Controller
     public function ProductShowNotLogin() 
     {
             
-            $Carousel = DB::table('carousels')
-                    ->get();
+           
+            $Carousel = Carousel::all();
 
             $dt_product_not_login = DB::table('tblproducts as p')
             ->select(
@@ -44,8 +45,7 @@ class ProductShow extends Controller
     public function ProductMachineCoffeeShowNotLogin() 
     {
             
-            $Carousel = DB::table('carousels')
-                    ->get();
+            $Carousel = Carousel::all();
 
             $dt_product_not_login = DB::table('tblproducts as p')
             ->select(
@@ -132,7 +132,7 @@ class ProductShow extends Controller
                             ->simplePaginate(6);
         }
                             
-        $carousel = DB::table('carousels')->get();
+        $carousel = Carousel::all();
         
         return view('ProductLogin', ['title' => 'Welcome '.$dtuser->name, 'count_shopping_cart' => $data_transaksi,'user' => $dtuser->name,'product' => $data_all_product,'Carousel' => $carousel]);
     }

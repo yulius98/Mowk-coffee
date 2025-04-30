@@ -5,6 +5,7 @@
         <a class="rounded-md px-3 py-2 text-sm font-medium text-[rgb(240,180,140)]">{{ $user }}</a>
     </body>
 </div>
+
 <!-- Produk Promo -->    
 <div class="container mx-auto px-4 py-8" >
     <div class="flex justify-between items-center mb-6">
@@ -16,6 +17,7 @@
             </button>
         </div>    
     </div>
+    @method('get')
     {{ $data_carousel->links() }}    
     <div class="card-body">
             <table class="min-w-full divide-y divide-gray-900">
@@ -34,7 +36,13 @@
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
                                     <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel/{{ $user }}/{{ $dt_ads->id }}'" >Edit</button>
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel_delete/{{ $user }}/{{ $dt_ads->id }}'" >Delete</button>
+                                    <form action="/Carousel_delete/{{ $user }}/{{ $dt_ads->id }}" method="POST" onsubmit="return confirm('Are you sure to delete?')" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700">Delete</button>
+                                    </form>
+                                </div>
+                                    
                                 </div>
                             </td>
                         </tr>

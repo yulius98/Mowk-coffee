@@ -6,6 +6,7 @@ use App\Models\tblproduct;
 use App\Models\tblpembelian;
 use App\Models\tblstock_log;
 use App\Models\tbltransaksi;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,8 @@ class CRUIDSellerController extends Controller
     
     public function ShowCRUIDSeller($name_seller){
         //dd($name_seller);
-        $data_carousel = DB::table('carousels')->simplePaginate(3);
+        //$data_carousel = DB::table('carousels')->simplePaginate(3);
+        $data_carousel = Carousel::simplePaginate(3);
         
         // Mengambil data biji dan mesin kopi dan jumlah stock biji kopi
         $data_biji_kopi = DB::table('tblproducts as p')
