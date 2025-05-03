@@ -11,10 +11,15 @@
   </head>
  <body class="h-full">
   <div class="min-h-full">
-    {{ $slot }}
-      <script>
-        feather.replace();
-      </script>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        {{ $slot }}<!-- Your content -->
+      </div>
+    </main>
+    <script>
+      feather.replace();
+    </script>    
+    @stack('scripts')
   </div>
 </body>
 </html>

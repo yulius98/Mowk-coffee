@@ -1,7 +1,7 @@
 <x-nav-bar-login :pendingCount="$count_shopping_cart" :title="$title" :user="$user" />
 <x-layout-login>
 
-    <section id="hero" class="mt-16 bg-[rgb(221,194,175)] p-20">
+    <section id="hero" class="mt-16 bg-[rgb(221,194,175)] ">
         <div id="heroCarousel" class="relative w-full rounded-3xl shadow-2xl shadow-black overflow-hidden">
             <!-- Carousel Indicators -->
             <div class="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 space-x-2">
@@ -71,9 +71,9 @@
     </script>
 
  
-    <div class="bg-[rgb(221,194,175)] p-20">
+    <div class="bg-[rgb(221,194,175)] pt-20">
         <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">   
-            <h2 class="text-4xl font-bold tracking-tight text-black text-center">Product Mowks Coffee </h2> <!-- Added mb-6 for better spacing -->
+            <h2 class="text-4xl font-bold tracking-tight text-black text-center mt-0">Product Mowks Coffee </h2> <!-- Added mb-6 for better spacing -->
         </div>
 
     <!-- Product list -->
