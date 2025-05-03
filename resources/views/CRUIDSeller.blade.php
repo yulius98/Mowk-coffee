@@ -31,7 +31,7 @@
                     <tbody class="divide-y divide-black bg-[rgb(236,222,210)]">
                         <tr>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
-                                <img src="{{ asset('storage/'. $dt_ads->image)}}" alt="Product Ads" class="w-[20%] h-auto object-cover">
+                                <img src="{{ asset('storage/'. $dt_ads->image)}}" alt="Product Ads" class="w-[50%] h-auto object-cover">
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
                                 <div class="d-flex justify-content-between mb-3">
