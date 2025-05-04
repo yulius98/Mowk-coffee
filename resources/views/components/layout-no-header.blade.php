@@ -8,6 +8,7 @@
         @php
             $isProduction = app()->environment('production');
             $manifestPath = $isProduction ? '../public_html/build/manifest.json' : public_path('build/manifest.json');
+            
         @endphp
 
         @if ($isProduction && file_exists($manifestPath))
