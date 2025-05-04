@@ -7,7 +7,7 @@
 </div>
 
 <!-- Produk Promo -->    
-<div class="container mx-auto px-4 py-8" >
+<div class="mx-auto px-4 py-8 max-w-7xl">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold text-black">Product Ads</h2>
         <div class="flex items-center gap-4">
@@ -19,7 +19,7 @@
     </div>
     @method('get')
     {{ $data_carousel->links() }}    
-    <div class="card-body">
+    <div>
             <table class="min-w-full divide-y divide-gray-900">
                 <thead class="bg-[rgb(136,77,38)]">
                     <tr>
@@ -34,12 +34,12 @@
                                 <img src="{{ asset('storage/'. $dt_ads->image)}}" alt="Product Ads" class="w-[50%] h-auto object-cover">
                             </td>
                             <td class="border border-gray-900 px-4 py-2 font-medium text-gray-500">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <button class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel/{{ $user }}/{{ $dt_ads->id }}'" >Edit</button>
-                                    <form action="/Carousel_delete/{{ $user }}/{{ $dt_ads->id }}" method="POST" onsubmit="return confirm('Are you sure to delete?')" class="d-inline">
+                                <div class="flex justify-between mb-3">
+                                    <button class="gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700" onclick="window.location.href='/Carousel/{{ $user }}/{{ $dt_ads->id }}'" >Edit</button>
+                                    <form action="/Carousel_delete/{{ $user }}/{{ $dt_ads->id }}" method="POST" onsubmit="return confirm('Are you sure to delete?')" class="inline">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700">Delete</button>
+                                        <button type="submit" class="gap-x-1.5 rounded-md bg-[rgba(178,45,45,0.87)] px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-700">Delete</button>
                                     </form>
                                 </div>
                                     

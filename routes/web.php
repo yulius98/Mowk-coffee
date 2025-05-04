@@ -31,7 +31,8 @@ Route::get('/About', function () {
 
 Route::get('/Login', function () {
     return view('Login');
-})->name('login');
+});
+// Removed the name('login') to avoid route name conflict with Auth::routes()
 
 Route::get('/Register', function () {
     return view('Register');
@@ -92,6 +93,7 @@ Route::get('/payment-success', function () {
     return redirect('/Product')->with('success', 'Payment completed successfully!');
 });
 
+
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
@@ -99,6 +101,7 @@ Route::get('/forgot-password', function () {
 Route::get('/reset-password/{token}', function (string $token) {
         return view('auth.reset-password', ['token' => $token]);
     })->middleware('guest')->name('password.reset');
+
 
 
 // POST Methods

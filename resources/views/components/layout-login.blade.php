@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{-- @vite('resources/css/app.css') --}}
+    
     @php
 	        $isProduction = app()->environment('production');
 	        $manifestPath = $isProduction ? '../public_html/build/manifest.json' : public_path('build/manifest.json');
