@@ -19,8 +19,6 @@ use App\Http\Controllers\CRUIDSellerController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ResetPasswordController;
 
-
-
 Route::get('/', function () {
     return view('home');
 });
