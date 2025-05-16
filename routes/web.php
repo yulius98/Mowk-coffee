@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/Dashboard_Order_Product/{user}',[CRUIDSellerController::class,'Show_Order_Shipping_Product']);
     Route::get('/Dashboard_Event/{user}',[CRUIDSellerController::class,'Show_Event'])->name('dashboard_event');
     Route::get('/Order_Status/{user}',[ProductShow::class,'Order_Status_Buyer']);
-    Route::get('/ProductMachineCoffee', [ProductShow::class, 'ProductMachineCoffeeShowNotLogin']);
+    
     Route::get('/Edit_Profile/{user}', [RegController::class, 'Show_Edit_Profile']);
     Route::get('/RegisterSeller', function () {
         return view('RegisterSeller');
@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
 Auth::routes();
 
 Route::get('/Product', [ProductShow::class, 'ProductShowNotLogin']);
+Route::get('/ProductMachineCoffee', [ProductShow::class, 'ProductMachineCoffeeShowNotLogin']);
 Route::get('/success/{user}',[CheckoutController::class,'Success']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/Detail_Event/{id}',[EventController::class,'Detail_Event']);

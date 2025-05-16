@@ -48,11 +48,19 @@
             
             <div class="space-y-4">
                 
-                <button id="pay-button"
+                <button id ="pay-button"
                     class="w-full flex items-center justify-center rounded-lg bg-[rgb(200,160,120)] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[rgb(180,140,100)] transition duration-150 ease-in-out">
                         Pay Now !
                 </button>
-                
+                <div class="flex justify-center items-center space-x-2 text-sm">
+                    <span class="text-gray-600">or</span>
+                    <a href="/ProductLogin/{{ $user }}/Coffee Been" 
+                            class="font-medium text-[rgb(200,160,120)] hover:text-[rgb(180,140,100)] transition duration-150 ease-in-out">
+                        Cancel
+                        <span aria-hidden="true"> →</span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>

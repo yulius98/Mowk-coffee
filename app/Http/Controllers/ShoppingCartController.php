@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\tblpenjualan;
 use App\Models\tblstock_log;
 use App\Models\tbltransaksi;
+use App\Models\tblproduct;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
@@ -51,11 +53,12 @@ class ShoppingCartController extends Controller
         $add_data_transaksi->save();
 
 
-        $data_all_product = DB::table('tblproducts as p')
-                                ->leftJoin('tblstock_logs as sl', 'p.nama_product', '=', 'sl.nama_product')
-                                ->select( 'p.id','p.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'p.price','p.image','p.discount','p.discount_price','p.description')
-                                ->groupBy('p.id','p.nama_product', 'p.price','p.description', 'p.image','p.discount','p.discount_price')
-                                ->simplePaginate(6);  
+        $data_all_product = tblproduct::leftJoin('tblstock_logs as sl', 'tblproducts.nama_product', '=', 'sl.nama_product')
+                            ->select( 'tblproducts.id','tblproducts.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
+                            ->where('tblproducts.category','=', 'Coffee Been')
+                            ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                            ->havingRaw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) > 0')
+                            ->simplePaginate(6); 
 
         $data_transaksi = DB::table('tbltransaksis')
                             ->where('nama_pembeli', $request->nama_pembeli)
@@ -63,9 +66,10 @@ class ShoppingCartController extends Controller
                             ->count();
 
 
-        $carousel = DB::table('carousels')->get();
+        $carousel = Carousel::all();
         
-        return view('ProductLogin', ['title' => 'Welcome '.$data_user->name, 'count_shopping_cart' => $data_transaksi, 'user' => $data_user->name,'product' => $data_all_product,'Carousel' => $carousel]);    
+        return redirect('/ProductLogin/'.$request->nama_pembeli.'/Coffee Been')->with('success', 'Product added to shopping cart successfully!');
+        //return view('ProductLogin', ['title' => 'Welcome '.$data_user->name, 'count_shopping_cart' => $data_transaksi, 'user' => $data_user->name,'product' => $data_all_product,'Carousel' => $carousel]);    
      }
 
 

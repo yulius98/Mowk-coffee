@@ -30,6 +30,7 @@ class ProductShow extends Controller
                                     'tblproducts.description')
                                 ->where('tblproducts.category','=', 'Coffee Been')
                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                ->havingRaw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) > 0')
                                 ->simplePaginate(6);
             
         
@@ -53,6 +54,7 @@ class ProductShow extends Controller
                                     'tblproducts.description')
                                 ->where('tblproducts.category','=', 'Machine Coffee')
                                 ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                                ->havingRaw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) > 0')
                                 ->simplePaginate(6);
             
             return view('ProductMachineCoffee',['title'=>'Machine Coffee'], compact('Carousel','dt_product_not_login'));
@@ -110,6 +112,7 @@ class ProductShow extends Controller
                             ->select( 'tblproducts.id','tblproducts.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
                             ->where('tblproducts.category','=', 'Coffee Been')
                             ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                            ->havingRaw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) > 0')
                             ->simplePaginate(6);
             
         }else if($category == 'Machine Coffee'){
@@ -117,6 +120,7 @@ class ProductShow extends Controller
                             ->select( 'tblproducts.id','tblproducts.nama_product', DB::raw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) AS stock'),'tblproducts.price','tblproducts.image','tblproducts.discount','tblproducts.discount_price','tblproducts.description')
                             ->where('tblproducts.category','=', 'Machine Coffee')
                             ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
+                            ->havingRaw('(COALESCE(SUM(sl.jumlah_product_beli), 0) - COALESCE(SUM(sl.jumlah_product_jual), 0)) > 0')
                             ->simplePaginate(6);
             
             

@@ -104,7 +104,7 @@
                                 <h5 class="text-base font-medium text-black">Rp {{ number_format((float)$dataproduct->price, 0, ',', '.') }}</h5>    
                             @endif
 
-                            <h6 class="text-lg font-thin font-serif text-gray-800 line-clamp-2 mb-0">Stock : {{ $dataproduct->stock }}</h6> 
+                            {{-- <h6 class="text-lg font-thin font-serif text-gray-800 line-clamp-2 mb-0">Stock : {{ $dataproduct->stock }}</h6> --}}
                             <h7 class="text-lg font-thin font-serif text-gray-800 line-clamp-2 mb-0"> Description : {{ Str::limit($dataproduct->description,100)}}</h7>
                             <a 
                                 href="#" data-product-id="{{ $loop->index }}" 

@@ -114,7 +114,7 @@
                                 <h4 class="text-base font-medium text-black">Rp {{ number_format((float)$dt_product->price, 0, ',', '.') }}</h4>    
                             @endif
                             
-                            <h6 class="text-sm font-thin font-serif text-black line-clamp-2 ">Stock : {{ $dt_product->stock }}</h6> 
+                            {{-- <h6 class="text-sm font-thin font-serif text-black line-clamp-2 ">Stock : {{ $dt_product->stock }}</h6> --}}
                         </div>
                        
                     </div>
