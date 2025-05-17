@@ -33,7 +33,7 @@ class CRUIDSellerController extends Controller
                                  ->simplePaginate(3);
 
         //dd($data_mesin_kopi);    
-        
+        //return redirect('/CRUIDSeller/'.$name_seller)->with('success', 'Product added successfully!');
         return view('CRUIDSeller', ['title' => $name_seller, 'user' => $name_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi ,'data_mesin_kopi' => $data_mesin_kopi]);
                                         
     }
@@ -109,7 +109,9 @@ class CRUIDSellerController extends Controller
                                  ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
                                  ->simplePaginate(3);
                                         
-        return view('CRUIDSeller', ['title' => $request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi , 'data_mesin_kopi' => $data_mesin_kopi]);
+        
+        return redirect('/CRUIDSeller/'.$request->nama_seller)->with('success', 'Product added successfully!');
+        //return view('CRUIDSeller', ['title' => $request->nama_seller, 'user' => $request->nama_seller,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi , 'data_mesin_kopi' => $data_mesin_kopi]);
 
         
     }
@@ -160,7 +162,8 @@ class CRUIDSellerController extends Controller
                                  ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
                                  ->simplePaginate(3);
 
-        return view('CRUIDSeller', ['title' => $request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);                
+        return redirect('/CRUIDSeller/'.$request->user)->with('success', 'Stock added successfully!');
+        //return view('CRUIDSeller', ['title' => $request->user, 'user' => $request->user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);                
     }
 
     
@@ -212,7 +215,8 @@ class CRUIDSellerController extends Controller
                                      ->groupBy('tblproducts.id','tblproducts.nama_product', 'tblproducts.price','tblproducts.description', 'tblproducts.image','tblproducts.discount','tblproducts.discount_price')
                                      ->simplePaginate(3);
 
-        return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
+        return redirect('/CRUIDSeller/'.$user)->with('success', 'Product updated successfully!');
+        //return view('CRUIDSeller', ['title' => $user, 'user' => $user,'data_carousel' => $data_carousel ,'data_biji_kopi' => $data_biji_kopi,'data_mesin_kopi' => $data_mesin_kopi]);
         
     }
 
@@ -221,11 +225,11 @@ class CRUIDSellerController extends Controller
         $data_shipping_product = DB::table('tbltransaksis')
                                     ->where('status_transaksi','=','paid')
                                     ->orderByDesc('order_id')
-                                    ->get();
+                                    ->simplePaginate(5);
 
         $all_status_order_product = DB::table('tbltransaksis')
                                     ->orderByDesc('nama_pembeli')
-                                    ->get();
+                                    ->simplePaginate(5);
 
         return view ('Dashboard_Order_Product',['title' => $user,'data_shipping' => $data_shipping_product,'all_status_order' => $all_status_order_product]);
     }
@@ -306,14 +310,14 @@ class CRUIDSellerController extends Controller
         return view ('Dashboard_Event',['title' => $user,'data_event' => $data_event,'data_peserta_event' => $data_peserta_event]);
     }
     public function Add_Event($user){
-        return view ('ModalForm_AddEvent',['title' => $user]);
+        return view ('Form_Add_Event',['title' => $user]);
     }
     public function Edit_Event($id,$user){
         $edit_event = DB::table('tblevent')
                     ->where('id', $id)
                     ->first();
         //dd($edit_event);
-        return view ('ModalForm_EditEvent',['title' => $user,'edit_event' => $edit_event]);
+        return view ('Form_Edit_Event',['title' => $user,'edit_event' => $edit_event]);
     }
 
 }

@@ -18,13 +18,13 @@
                     @endforeach
                 </u1>
             </div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success col-md-6 text-balck">
-                {{ session('status') }}
-            </div>
-            
-        @endif   
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success col-md-6 text-balck">
+                    {{ session('status') }}
+                </div>
+                
+            @endif   
             <div>
                 <label for="email" class="block text-sm/6 font-semibold text-gray-900">Email address</label>
                 <div class="mt-2">
